@@ -1,0 +1,57 @@
+[
+  {
+    "Id": "451ba081-11f3-4765-b941-1a207fd20d27",
+    "Title": "New Fence - Drop your shortcuts here",
+    "X": 1514.0,
+    "Y": 119.0,
+    "Width": 360.0,
+    "Height": 180.0,
+    "ItemsType": "Data",
+    "Items": [
+      {
+        "Filename": "Shortcuts\\بطاقة الطالب الجامعي_08-09-2025.pdf.lnk",
+        "IsFolder": false,
+        "IsLink": false,
+        "IsNetwork": false,
+        "DisplayName": "بطاقة الطالب الجامعي_08-09-2025",
+        "AlwaysRunAsAdmin": false,
+        "DisplayOrder": 0
+      }
+    ],
+    "IsLocked": "false",
+    "IsHidden": "false",
+    "IsRolled": "false",
+    "UnrolledHeight": 180.0,
+    "TabsEnabled": "false",
+    "CurrentTab": 0,
+    "Tabs": [],
+    "CustomColor": null,
+    "FenceBorderThickness": 2
+  },
+  {
+    "Id": "a6761665-ad9e-4d43-83a5-027515fe0eac",
+    "Title": "Desktop Fences+ Startup Tips",
+    "X": 1231.0,
+    "Y": 492.0,
+    "Width": 763.0,
+    "Height": 451.0,
+    "ItemsType": "Note",
+    "Items": [],
+    "CustomColor": null,
+    "TextColor": "Teal",
+    "NoteContent": "WELCOME TO DESKTOP FENCES +\r\n---------------------------\r\n• Roll Up/Down: Double-click the fence title bar.\r\n• Rename: Ctrl + Click the title bar (Enter to save).\r\n• Search (SpotSearch): Press Ctrl + ` (Tilde) to find any icon instantly.\r\n• Options: Click the '♥' menu icon (top-left).\r\n• Reorder Icons on a Fence: Ctrl + Drag icon to new position.\r\n• Context Menu: Right-click icons or Fences for more options.\r\n \r\nTIP: Ctrl + Click or Ctrl + Right-click, gives even more options.\r\n\r\nTry customizing this fence! Right-click the title bar -> Customize...",
+    "NoteFontSize": "Medium",
+    "NoteFontFamily": "Segoe UI",
+    "WordWrap": "true",
+    "SpellCheck": "false",
+    "IsHidden": "false",
+    "IsLocked": "false",
+    "IsRolled": "false",
+    "UnrolledHeight": 451.0,
+    "BoldTitleText": "false",
+    "DisableTextShadow": "false",
+    "IconSize": "Medium",
+    "IconSpacing": 5,
+    "FenceBorderThickness": 2
+  }
+]

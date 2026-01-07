@@ -42,6 +42,40 @@ namespace Desktop_Fences
         /// Category: Cache Management
         /// </summary>
         public static Dictionary<string, ImageSource> IconCache => iconCache;
+
+        /// <summary>
+        /// Extracts icon from file path. Simple wrapper method used by FenceIconHandler.
+        /// </summary>
+        /// <param name="path">Path to the file to extract icon from.</param>
+        /// <returns>BitmapSource icon or null if extraction fails.</returns>
+        public static BitmapSource ExtractIcon(string path)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(path)) return null;
+
+                if (System.IO.File.Exists(path))
+                {
+                    using (var icon = System.Drawing.Icon.ExtractAssociatedIcon(path))
+                    {
+                        if (icon != null)
+                        {
+                            return icon.ToImageSource() as BitmapSource;
+                        }
+                    }
+                }
+                else if (System.IO.Directory.Exists(path))
+                {
+                    return new BitmapImage(new Uri("pack://application:,,,/Resources/folder-White.png"));
+                }
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log(LogManager.LogLevel.Warn, LogManager.LogCategory.IconHandling,
+                    $"Error extracting icon for {path}: {ex.Message}");
+            }
+            return null;
+        }
         #endregion
 
         #region Main Icon Operations - Used by: FenceManager, PortalFenceManager, IconDragDropManager

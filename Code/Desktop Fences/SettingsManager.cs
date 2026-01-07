@@ -31,6 +31,21 @@ namespace Desktop_Fences
         public static DateTime LastAutoBackupDate { get; set; } = DateTime.MinValue;
 
         /// <summary>
+        /// Gets or sets whether to use wallpaper colors for accents.
+        /// </summary>
+        public static bool UseWallpaperColors { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets the fence transparency level (0-255).
+        /// </summary>
+        public static int FenceTransparency { get; set; } = 200;
+
+        /// <summary>
+        /// Gets or sets the custom fence color as a string (e.g., "#FF0000").
+        /// </summary>
+        public static string CustomFenceColor { get; set; } = "#333333";
+
+        /// <summary>
         /// Gets or sets whether extension will be visible on portal fences
         /// </summary>
         public static bool ShowPortalExtensions { get; set; } = false;
@@ -98,7 +113,9 @@ namespace Desktop_Fences
         public static string SelectedColor { get; set; } = "Gray";
 
         /// <summary>
-        /// Gets or sets whether logging is enabled for snapping events.
+        /// Gets or sets the base color for the theme (light/dark).
+        /// </summary>
+        public static string BaseColor { get; set; } = "dark";
         /// </summary>
         public static bool IsLogEnabled { get; set; } = false;
 
@@ -289,7 +306,7 @@ namespace Desktop_Fences
                     try { DisableFenceScrollbars = optionsData.DisableFenceScrollbars ?? false; } catch { DisableFenceScrollbars = false; }
                     // Load DisableNoteAutoSave with protection
                     try { DisableNoteAutoSave = optionsData.DisableNoteAutoSave ?? false; } catch { DisableNoteAutoSave = false; }
-               
+
                     try { ExportShortcutsOnFenceDeletion = optionsData.ExportShortcutsOnFenceDeletion ?? false; } catch { ExportShortcutsOnFenceDeletion = false; }
                     try { DeleteOriginalShortcutsOnDrop = optionsData.DeleteOriginalShortcutsOnDrop ?? false; } catch { DeleteOriginalShortcutsOnDrop = false; }
                     //   try { MaxDisplayNameLength = optionsData.MaxDisplayNameLength ?? 20; } catch { MaxDisplayNameLength = 20; }
@@ -322,7 +339,7 @@ namespace Desktop_Fences
                         MaxDisplayNameLength = 20;
                     }
 
-                    // Load DisableSingleInstance with protection  
+                    // Load DisableSingleInstance with protection
                     try { DisableSingleInstance = optionsData.DisableSingleInstance ?? false; }
                     catch { DisableSingleInstance = false; }
 
@@ -365,11 +382,11 @@ namespace Desktop_Fences
                     try { DeletePreviousLogOnStart = optionsData.DeletePreviousLogOnStart ?? false; }
                     catch { DeletePreviousLogOnStart = false; }
 
-                    // Load SuppressLaunchWarnings with protection  
+                    // Load SuppressLaunchWarnings with protection
                     try { SuppressLaunchWarnings = optionsData.SuppressLaunchWarnings ?? false; }
                     catch { SuppressLaunchWarnings = false; }
 
-                    // Load EnableBackgroundValidationLogging with protection  
+                    // Load EnableBackgroundValidationLogging with protection
                     try { EnableBackgroundValidationLogging = optionsData.EnableBackgroundValidationLogging ?? false; }
                     catch { EnableBackgroundValidationLogging = false; }
 
@@ -480,8 +497,8 @@ namespace Desktop_Fences
                     EnabledLogCategories = EnabledLogCategories.Select(c => c.ToString()).ToList(),
                     DeletePreviousLogOnStart,
                     SuppressLaunchWarnings,
-                    EnableBackgroundValidationLogging, // 
-                    DisableSingleInstance, // Multiple instances option  
+                    EnableBackgroundValidationLogging, //
+                    DisableSingleInstance, // Multiple instances option
                     DisableFenceScrollbars, // Scrollbar control option
                     DisableNoteAutoSave, // Note auto-save control option
                     ExportShortcutsOnFenceDeletion,
@@ -529,7 +546,7 @@ namespace Desktop_Fences
             SaveSettings();
         }
 
-  
+
 
 
 

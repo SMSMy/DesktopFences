@@ -165,6 +165,66 @@ namespace Desktop_Fences
             }
         }
 
+        /// <summary>
+        /// Checks if the application is set to start with Windows.
+        /// </summary>
+        /// <returns>True if startup is enabled, false otherwise.</returns>
+        public static bool IsStartupEnabled()
+        {
+            try
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run"))
+                {
+                    if (key != null)
+                    {
+                        var value = key.GetValue("Desktop Fences Plus");
+                        return value != null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log(LogManager.LogLevel.Error, LogManager.LogCategory.General,
+                    $"RegistryHelper: Error checking startup status: {ex.Message}");
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Sets or removes the application from Windows startup.
+        /// </summary>
+        /// <param name="enable">True to enable startup, false to disable.</param>
+        public static void SetStartup(bool enable)
+        {
+            try
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", writable: true))
+                {
+                    if (key != null)
+                    {
+                        if (enable)
+                        {
+                            string exePath = Assembly.GetEntryAssembly()?.Location ?? "";
+                            key.SetValue("Desktop Fences Plus", $"\"{exePath}\"", RegistryValueKind.String);
+                            LogManager.Log(LogManager.LogLevel.Info, LogManager.LogCategory.General,
+                                "RegistryHelper: Added application to Windows startup.");
+                        }
+                        else
+                        {
+                            key.DeleteValue("Desktop Fences Plus", throwOnMissingValue: false);
+                            LogManager.Log(LogManager.LogLevel.Info, LogManager.LogCategory.General,
+                                "RegistryHelper: Removed application from Windows startup.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log(LogManager.LogLevel.Error, LogManager.LogCategory.General,
+                    $"RegistryHelper: Error setting startup: {ex.Message}");
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -531,7 +591,7 @@ namespace Desktop_Fences
         }
 
         #endregion
-      
+
     }
 
 

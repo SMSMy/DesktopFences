@@ -8,7 +8,7 @@ namespace Desktop_Fences
 {
     public static class LogManager
     {
-        public enum LogLevel { Debug, Info, Warn, Error }
+        public enum LogLevel { Debug, Info, Warn, Warning, Error }
         public enum LogCategory
         {
             General,
@@ -19,7 +19,8 @@ namespace Desktop_Fences
             Error,
             ImportExport,
             Settings,
-            BackgroundValidation
+            BackgroundValidation,
+            Performance
         }
 
         private static readonly object _logLock = new object();

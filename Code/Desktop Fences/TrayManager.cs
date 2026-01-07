@@ -15,14 +15,15 @@ using System.Windows.Input;
 using WinFormsMouseEventArgs = System.Windows.Forms.MouseEventArgs;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Microsoft.Win32;
+using Desktop_Fences.Interfaces;
 
 
 namespace Desktop_Fences
 {
-    public class TrayManager : IDisposable
+    public class TrayManager : ITrayManager
     {
         private NotifyIcon _trayIcon;
-      
+
         private bool _disposed;
         public static bool IsStartWithWindows { get; private set; }
 
@@ -31,12 +32,12 @@ namespace Desktop_Fences
 
 
         private static readonly List<HiddenFence> HiddenFences = new List<HiddenFence>();
-    
+
         private ToolStripMenuItem _showHiddenFencesItem;
         public static TrayManager Instance { get; private set; } // Singleton instance
 
         private bool _areFencesTempHidden = false;
-    
+
         private List<NonActivatingWindow> _tempHiddenFences = new List<NonActivatingWindow>();
 
         private bool Showintray = SettingsManager.ShowInTray;
@@ -57,7 +58,7 @@ namespace Desktop_Fences
         {
             // 1. AUTO-MIGRATION: Check if we need to move from Shortcut to Registry
             PerformStartupMigration();
-           
+
             // 2. Check status using the NEW logic (Registry check + Shortcut fallback)
             IsStartWithWindows = CheckIfStartWithWindowsEnabled();
 
@@ -66,6 +67,9 @@ namespace Desktop_Fences
             RemoteInfoManager.Initialize();
 
             Instance = this; // Set singleton instance
+
+            // 4. Register with ServiceLocator for DI pattern
+            ServiceLocator.RegisterTrayManager(this);
         }
 
 
@@ -331,7 +335,7 @@ namespace Desktop_Fences
                         FenceManager.ReloadFences();
 
                         // FIX 2: Force Garbage Collection
-                        // Since we just closed heavy WPF windows, we force a collection to release 
+                        // Since we just closed heavy WPF windows, we force a collection to release
                         // the memory immediately before loading new ones.
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
@@ -422,7 +426,7 @@ namespace Desktop_Fences
                 // A. Update the Registry (The new reliable way)
                 SetRegistryStartup(enable);
 
-                // B. AGGRESSIVE CLEANUP: Always try to delete the old shortcut 
+                // B. AGGRESSIVE CLEANUP: Always try to delete the old shortcut
                 // to ensure we never have double-launching or "ghost" shortcuts.
                 string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
                 string shortcutPath = Path.Combine(startupPath, "Desktop Fences.lnk");
@@ -573,7 +577,59 @@ namespace Desktop_Fences
             }
         }
 
-           
+        #region ITrayManager Interface Implementation
+
+        /// <summary>
+        /// Shows or hides the tray icon.
+        /// </summary>
+        /// <param name="visible">True to show, false to hide.</param>
+        public void SetVisibility(bool visible)
+        {
+            if (_trayIcon != null)
+            {
+                _trayIcon.Visible = visible;
+                LogManager.Log(LogManager.LogLevel.Debug, LogManager.LogCategory.UI,
+                    $"Tray icon visibility set to: {visible}");
+            }
+        }
+
+        /// <summary>
+        /// Registers a hidden fence with the tray manager.
+        /// </summary>
+        /// <param name="fenceId">The fence identifier.</param>
+        /// <param name="fenceName">The fence display name.</param>
+        public void RegisterHiddenFence(string fenceId, string fenceName)
+        {
+            // Find the window by fenceId and add to hidden list
+            var window = System.Windows.Application.Current.Windows
+                .OfType<NonActivatingWindow>()
+                .FirstOrDefault(w => w.Tag?.ToString() == fenceId);
+
+            if (window != null)
+            {
+                AddHiddenFence(window);
+            }
+        }
+
+        /// <summary>
+        /// Unregisters a hidden fence from the tray manager.
+        /// </summary>
+        /// <param name="fenceId">The fence identifier.</param>
+        public void UnregisterHiddenFence(string fenceId)
+        {
+            // Find the hidden fence by matching window Tag
+            var hiddenFence = HiddenFences.FirstOrDefault(hf =>
+                hf.Window?.Tag?.ToString() == fenceId);
+
+            if (hiddenFence != null)
+            {
+                ShowHiddenFence(hiddenFence.Title);
+            }
+        }
+
+        #endregion
+
+
 
     }
 }

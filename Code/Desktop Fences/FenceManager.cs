@@ -146,6 +146,38 @@ namespace Desktop_Fences
             }
         }
 
+        /// <summary>
+        /// Refreshes a specific fence by its ID.
+        /// For simplicity, this reloads all fences.
+        /// </summary>
+        /// <param name="fenceId">The ID of the fence to refresh.</param>
+        public static void RefreshFence(string fenceId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(fenceId)) return;
+
+                var fence = FenceDataManager.FenceData.FirstOrDefault(f => f.Id?.ToString() == fenceId);
+                if (fence == null)
+                {
+                    LogManager.Log(LogManager.LogLevel.Warning, LogManager.LogCategory.FenceUpdate,
+                        $"RefreshFence: Fence not found with ID {fenceId}");
+                    return;
+                }
+
+                // Reload all fences to refresh the content
+                ReloadFences();
+
+                LogManager.Log(LogManager.LogLevel.Info, LogManager.LogCategory.FenceUpdate,
+                    $"RefreshFence: Refreshed fence '{fence.Title}'");
+            }
+            catch (Exception ex)
+            {
+                LogManager.Log(LogManager.LogLevel.Error, LogManager.LogCategory.FenceUpdate,
+                    $"RefreshFence error: {ex.Message}");
+            }
+        }
+
 
 
         /// <summary>
@@ -533,7 +565,7 @@ namespace Desktop_Fences
                 LogManager.Log(LogManager.LogLevel.Debug, LogManager.LogCategory.ImportExport, $"Adjusted fence '{win.Title}' position to ({newLeft}, {newTop}) to fit within screen bounds.");
             }
             FenceDataManager.SaveFenceData();
-  
+
         }
 
         private static int _registryMonitorTickCount = 0;
@@ -791,7 +823,7 @@ namespace Desktop_Fences
                     iconContextMenu.Items.Add(miRunAsAdmin);
                     iconContextMenu.Items.Add(miAlwaysAdmin);
 
-                 
+
                     // Run as Admin Logic
                     miRunAsAdmin.Click += (s, e) => {
                         string target = Utility.GetShortcutTarget(filePath);
@@ -1148,7 +1180,7 @@ namespace Desktop_Fences
                     }
                 }
 
-                // Try HTML format  
+                // Try HTML format
                 if (dataObject.GetDataPresent(DataFormats.Html))
                 {
                     string html = dataObject.GetData(DataFormats.Html) as string;
@@ -1230,7 +1262,7 @@ namespace Desktop_Fences
                     shortcutPath = System.IO.Path.Combine("Shortcuts", $"{displayName} ({counter++}).url");
                 }
 
-                // Create the URL shortcut file  
+                // Create the URL shortcut file
                 CreateWebLinkShortcut(url, shortcutPath, displayName);
 
                 // Create item data for the fence
@@ -1349,7 +1381,7 @@ namespace Desktop_Fences
                 ContextMenu iconContextMenu = new ContextMenu();
                 MenuItem miRemove = new MenuItem { Header = "Remove" };
 
-        
+
                 miRemove.Click += (sender, e) =>
                 {
                     try
@@ -1501,7 +1533,7 @@ namespace Desktop_Fences
                     $"Error creating context menu: {ex.Message}");
             }
         }
-             
+
         public static List<dynamic> GetFenceData()
         {
             return FenceDataManager.FenceData;
@@ -1518,7 +1550,7 @@ namespace Desktop_Fences
 
 
 
- 
+
         /// <summary>
         /// Updates the filter history for a fence using LRU (Least Recently Used) logic.
         /// Max 5 items. Duplicates move to top.
@@ -1533,7 +1565,7 @@ namespace Desktop_Fences
             try
             {
                 // 1. GET FRESH DATA (Fixes the "Replace" bug)
-                // We cannot rely on the 'fence' parameter because it might be stale 
+                // We cannot rely on the 'fence' parameter because it might be stale
                 // (referencing the state from when the window opened).
                 string fenceId = fence.Id?.ToString();
                 if (string.IsNullOrEmpty(fenceId)) return;
@@ -1817,7 +1849,7 @@ namespace Desktop_Fences
 
 
         // TABS FEATURE: Toggle tabs with strict Data Migration and Effect Cleanup
-        private static void ToggleFenceTabs(dynamic fence)
+        public static void ToggleFenceTabs(dynamic fence)
         {
             try
             {
@@ -1878,8 +1910,8 @@ namespace Desktop_Fences
                         var activeItems = activeTab["Items"] as JArray;
                         if (activeItems != null)
                         {
-                            // FIX: Clear mainItems first! 
-                            // This prevents duplication because mainItems might already contain stale copies 
+                            // FIX: Clear mainItems first!
+                            // This prevents duplication because mainItems might already contain stale copies
                             // (especially from Tab 0 syncing).
                             mainItems.Clear();
 
@@ -2651,7 +2683,7 @@ namespace Desktop_Fences
 
                     // --- BUG FIX: FORCE SYNC WITH MAIN ITEMS ---
                     // Now that the tabs have shifted, "Tab 0" might be different.
-                    // We must force 'Main.Items' to mirror the NEW 'Tab 0' to prevent "Ghost Icons" 
+                    // We must force 'Main.Items' to mirror the NEW 'Tab 0' to prevent "Ghost Icons"
                     // from appearing if the user later disables tabs.
                     if (tabs.Count > 0)
                     {
@@ -2767,7 +2799,7 @@ namespace Desktop_Fences
                 tabs[toIndex] = tempTab;
 
                 // 4. Update CurrentTab Index if necessary
-                // If we moved the active tab, follow it. 
+                // If we moved the active tab, follow it.
                 // If we moved a tab into the active slot, update the index to stay on the same content.
                 int currentTabIdx = Convert.ToInt32(currentFence.CurrentTab?.ToString() ?? "0");
 
@@ -3402,7 +3434,7 @@ namespace Desktop_Fences
             string currentVersion = Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "0.0.0"; // This is current version for registry tracking
 
 
-           
+
             RegistryHelper.SetProgramManagementValues(currentVersion);
 
 
@@ -3509,7 +3541,7 @@ namespace Desktop_Fences
                 IsLogEnabled = SettingsManager.IsLogEnabled,
                 singleClickToLaunch = SettingsManager.SingleClickToLaunch,
                 LaunchEffect = SettingsManager.LaunchEffect,
-                CheckNetworkPaths = false 
+                CheckNetworkPaths = false
             };
 
             bool jsonLoadSuccessful = false;
@@ -3880,7 +3912,7 @@ namespace Desktop_Fences
             if (SettingsManager.MenuIcon == 0)
             {
                 MenuSymbol = "♥";
-              
+
             }
             else if (SettingsManager.MenuIcon == 1)
             {
@@ -3910,14 +3942,14 @@ namespace Desktop_Fences
                 Opacity = (double)SettingsManager.MenuTintValue / 100 // 0.3 // Lower tint by default
 
             };
-  
+
             _heartTextBlocks[fence] = heart;
 
 
 
             heart.MouseEnter += (s, e) =>
             {
-                // Remove previous animation 
+                // Remove previous animation
                 heart.BeginAnimation(UIElement.OpacityProperty, null);
 
                 heart.Opacity = 1.0;
@@ -4008,7 +4040,7 @@ namespace Desktop_Fences
 
 
             TextBlock lockIcon = new TextBlock
-           
+
             {
 
                 //     Text = "🔐",
@@ -4027,7 +4059,7 @@ namespace Desktop_Fences
                 Opacity = (double)SettingsManager.MenuTintValue / 100 // 0.3 // Lower tint by default
             };
 
-  
+
             lockIcon.MouseEnter += (s, e) =>
             {
                 // Remove previous animation
@@ -4281,7 +4313,7 @@ namespace Desktop_Fences
             miPasteItem.Click += (s, e) => CopyPasteManager.PasteItem(fence);
             CnMnFenceManager.Items.Add(miPasteItem);
 
-          
+
 
 
 
@@ -4499,7 +4531,7 @@ namespace Desktop_Fences
                 }
 
 
-               
+
 
 
             };
@@ -4532,7 +4564,7 @@ namespace Desktop_Fences
             {
                 if (win.WindowState == WindowState.Maximized)
                 {
-                    // We use Dispatcher to let the OS finish its "snap" calculation first, 
+                    // We use Dispatcher to let the OS finish its "snap" calculation first,
                     // then we immediately override the mode back to Normal.
                     win.Dispatcher.BeginInvoke(new Action(() =>
                     {
@@ -5091,7 +5123,7 @@ namespace Desktop_Fences
                     Keyboard.ClearFocus(); // Drop focus
                     win.Focus();
                 }
-      
+
      else if (e.Key == Key.Escape)
                     {
                         // ESCAPE: Cancel and Revert
@@ -5161,7 +5193,7 @@ namespace Desktop_Fences
             // We delegate to the shared method to ensure consistent "Scrollable" layout on startup.
             RefreshTabStripUI(win, fence);
 
-       
+
             string fenceId = win.Tag?.ToString();
             if (string.IsNullOrEmpty(fenceId))
             {
@@ -5357,7 +5389,7 @@ namespace Desktop_Fences
                     }
                 }
             };
-     
+
 
 
             titletb.KeyDown += (sender, e) =>
@@ -5645,7 +5677,7 @@ namespace Desktop_Fences
                     }
                 }
             }
-       
+
 
             win.Drop += (sender, e) =>
             {
@@ -5990,7 +6022,7 @@ namespace Desktop_Fences
             };
 
 
-      
+
 
 
 
@@ -6468,9 +6500,9 @@ namespace Desktop_Fences
             wpcont.Children.Add(sp);
         }
 
-  
 
-        private static void CreateNewFence(string title, string itemsType, double x = 20, double y = 20, string customColor = null, string customLaunchEffect = null)
+
+        public static void CreateNewFence(string title, string itemsType, double x = 20, double y = 20, string customColor = null, string customLaunchEffect = null)
         {
             // Generate random name instead of using the passed title
             string fenceName = CoreUtilities.GenerateRandomName();
@@ -6626,7 +6658,7 @@ namespace Desktop_Fences
                 if (index >= 0 && index + 3 < fileContent.Length)
                 {
                     char nextChar = fileContent[index + 2];
-                    // If it looks like \\1... or \\a... it's likely a path. 
+                    // If it looks like \\1... or \\a... it's likely a path.
                     // To be safe, we check if it DOESN'T look like a file path (no ":\")
                     bool hasColon = fileContent.IndexOf(@":\", index) == index + 2; // e.g. C:\ check
                     if (!hasColon) return true;
@@ -6953,7 +6985,7 @@ namespace Desktop_Fences
         // Since we use lambdas above, we don't strictly need these, but good for safety if refactoring.
         private static void Tab_MouseEnter_Lambda(object sender, System.Windows.Input.MouseEventArgs e) { }
         private static void Tab_MouseLeave_Lambda(object sender, System.Windows.Input.MouseEventArgs e) { }
-    
+
         private static void BackupOrRestoreShortcut(string filePath, bool targetExists, bool isFolder)
         {
 
@@ -7327,7 +7359,7 @@ namespace Desktop_Fences
             });
         }
 
-  
+
 
         // Safety method to ensure no fences are stuck in transition state
         public static void ClearAllTransitionStates()
@@ -7407,7 +7439,7 @@ namespace Desktop_Fences
             }
         }
 
-   
+
 
         // --- LIVE EVENT ENGINE (v2.5. 4.183) ---
         // 1. Uses Static Handlers (Prevents Event Leaks).
@@ -7642,7 +7674,7 @@ namespace Desktop_Fences
             }
 
 
-     
+
             // 3. Ctrl + Click Logic (Navigation vs Drag)
             if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
             {
@@ -7666,7 +7698,7 @@ namespace Desktop_Fences
                     }
                     else
                     {
-                        // It's a file in a Portal Fence. 
+                        // It's a file in a Portal Fence.
                         // Do NOT drag (unsupported). Do NOT navigate.
                         // Future: Open With...
                         LogManager.Log(LogManager.LogLevel.Debug, LogManager.LogCategory.UI, "Ctrl+Click on Portal File ignored (No Drag support)");
@@ -7779,7 +7811,7 @@ namespace Desktop_Fences
             return parent as T;
         }
 
-   
+
 
 
         private static void LaunchItem(StackPanel sp, string path, bool isFolder, string arguments)
@@ -8572,7 +8604,7 @@ namespace Desktop_Fences
         }
 
 
- 
+
         // <summary>
         /// Registry monitor tick event - checks for trigger and activates effect
         /// DEBUG VERSION with detailed logging
