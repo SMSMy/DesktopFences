@@ -10,56 +10,50 @@
 
 <p align="center">
   <img src="https://github.com/limbo666/DesktopFences/blob/main/Imgs/Desktop_Fences_Social_Media_PNG.png" />
-  
-</p>
 
+</p>
 
 Desktop Fences + creates **virtual fences** on your desktop, allowing you to group and organize icons in a clean and convenient way. With enhanced visual effects and right-click options, it aims to provide a more polished and customizable user interface.
 
-
 **Desktop Fences+** is an open-source alternative to Stardock Fences, originally created by HakanKokcu under the name BirdyFences.
 
-This project is a continuation and substantial modification of the original BirdyFences codebase, which was licensed under the MIT License at the time of forking. 
+This project is a continuation and substantial modification of the original BirdyFences codebase, which was licensed under the MIT License at the time of forking.
 
 Desktop Fences+ has been significantly enhanced and optimized for improved performance, stability, and user experience, while respecting the terms of the original license and acknowledging the original author.
 
 ---
-[![Video Title](https://img.youtube.com/vi/I-blY76kSP8/maxresdefault.jpg)](https://www.youtube.com/watch?v=I-blY76kSP8)
----
 
-##  Manual
+## [![Video Title](https://img.youtube.com/vi/I-blY76kSP8/maxresdefault.jpg)](https://www.youtube.com/watch?v=I-blY76kSP8)
+
+## Manual
 
 **$\color{red}{\text{A simple how to use guide is located here:}}$** https://github.com/limbo666/DesktopFences/blob/main/desktop_fences_simple_manual.md
 
+## TIPS
 
-##  TIPS 
+**$\color{red}{\text{Also some advanced usage tips:}}$** https://github.com/limbo666/DesktopFences/blob/main/TIPS.md
 
-**$\color{red}{\text{Also some advanced usage tips:}}$**  https://github.com/limbo666/DesktopFences/blob/main/TIPS.md
-
-
-<br> Read them before starting an issue. 
+<br> Read them before starting an issue.
 
 ---
 
-##  Support
+## Support
 
 If this project has helped you, please consider supporting its development! Your contribution directly impacts how fast and far this project grows.
 
 Maintaining and improving this tool takes time, effort, and resources. Donations help me:
 
- - Dedicate more time to fixing bugs and adding features
+- Dedicate more time to fixing bugs and adding features
 
- - Cover the cost of tools (like AI assistance that speeds up development)
+- Cover the cost of tools (like AI assistance that speeds up development)
 
- - Stay motivated and keep pushing the project forward
-
+- Stay motivated and keep pushing the project forward
 
 🚀 Your support literally drives the pace of development — the more help I get, the more I can deliver!
 
 ☕ Buy me a coffee
 
 💡 Help cover my AI subscription
-
 
 Even small contributions mean a lot. Thank you for keeping this project alive and evolving! 🙏
 
@@ -76,6 +70,7 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Error Handlers** for Move actions, Program execution, Empty or invalid JSON files
 
 ## First release changes 🔥
+
 - **Tray Icon** indicates the application is running
 - **Program Exit Option** in the tray icon’s context menu
 - **New Fence Creation** at mouse location for intuitive placement
@@ -97,6 +92,7 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Run at Windows Startup** option
 
 ## 2.5.0.18
+
 - **Added**: Custom animation selection for each fence
 - **Added**: Custom background color selection for each fence
 - **Fixed**: 🐛 Bug on fence movement across multiscreen systems https://github.com/limbo666/DesktopFences/issues/2
@@ -107,6 +103,7 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: Basic `Hide` function for each fence
 
 ## 2.5.0.23
+
 - **Added**: ❤️ Heart menu to separate right click menu item on fences
 - **Added**: Function to undo fence deletion (Restore fence)
 - **Fixed**: 🐛 Bug on fence removal causing program to crash
@@ -114,6 +111,7 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: Number overlay on tray icon that indicates number of the hidden fences
 
 ## 2.5.0.26
+
 - **Changed**: Background color codes
 - **Added**: More background colors
 - **Added**: More launch effects (I ♥ Elastic)
@@ -123,6 +121,7 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: Custom delete confirmation message box
 
 ## 2.5.0.30
+
 - **Added**: Restore for previously backed up configurations
 - **Added**: Reload all Fences function
 - **Added**: Tooltips on options window
@@ -130,6 +129,7 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: Temporarily hide function for all fences (show desktop) on tray icon double click, restore with double click
 
 ## 2.5.1.37 - Release 3
+
 - **Added**: Snap to Dimension function for better size alignment
 - **Added**: Export Fence and Import Fence options to help move fences across systems. Few exported fences can be found [here](https://github.com/limbo666/DesktopFences/tree/main/Exported%20Fences)
 - **Added**: Ability to get icons from dll libraries or executables on under `Edit` Requested on https://github.com/limbo666/DesktopFences/issues/1
@@ -138,15 +138,18 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: Sound on custom message box appearance.
 
 ## 2.5.1.40
+
 - **Fixed**: 🐛 Bug on `Start with Windows`. The program now displays shortcuts correctly https://github.com/limbo666/DesktopFences/issues/6
 - **Fixed**: 🐛 Bug with `Options` and `About` screen that misplaced controls on scaled displays https://github.com/limbo666/DesktopFences/issues/5
 - **Added**: Function to display fences which are saved out of screen bounds (restored from other systems).
 
 ## 2.5.1.42
+
 - **Fixed**: 🐛 Bug on `Portal Fences` created by misuse of FileSystemWatcher. The program now updates target files as renamed, removed. https://github.com/limbo666/DesktopFences/issues/3
 - **Added**: Context menu items for `Portal Fences` and items. Now user is able to copy target file path or shortcut destination path and open `Portal Fence` target folder from right click.
 
 ## 2.5.1.58 Release 6
+
 - **Added**: Option to show/hide tray icon (requested on https://github.com/limbo666/DesktopFences/issues/9). Attention: Hiding tray icon means you don't have access to: showing hidden fences and hiding/showing fences by double clicking on tray icon.
 - **Added**: Option to show/hide portal fences watermark (requested on https://github.com/limbo666/DesktopFences/issues/11).
 - **Added**: Option to use recycle bin when deleting files or folders using portal fences right click menu.
@@ -157,10 +160,12 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: "Peek Behind" right click selection to make fences to reveal desktop contents behind them for 10 seconds.
 
 ## 2.5.1.64
+
 - **Added**: Rollup function when `Ctrl + Click` on Fence title (📝 Use CTRL + click).
 - **Added**: Function to filter hidden files on Portal Fences (request https://github.com/limbo666/DesktopFences/issues/13 and possibly fixing https://github.com/limbo666/DesktopFences/issues/14 as well).
 
 ## 2.5.1.65
+
 - **Changed**: `Delete Fence` option moved to Heart context menu
 - **Fixed**: 🐛 Bug on handling shortcuts targeting web links.
 - **Added**: New icon for shortcuts targeting web links.
@@ -168,13 +173,16 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: Indicator for network based files.
 
 ## 2.5.1.67
+
 - **Added**: Function to re-order icons within a fence (https://github.com/limbo666/DesktopFences/issues/15). 📝 Use `CTRL + drag`.
 
 ## 2.5.1.70
+
 - **Changed**: 🔨🔩🔧 Major code refactoring.
 - **Added**: 🎇 Four new launch effects.
 
 ## 2.5.1.75
+
 - **Added**: Error Handles on JSON loading for better stability against corrupted `fences.json` files
 - **Changed**: Portal Fences are named after the target folder upon creation.
 - **Changed**: Minor interface improvements for systems with resolution scaling enabled.
@@ -184,6 +192,7 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: Lot of tweaks user can set by editing JSON files.
 
 ## 2.5.2.86
+
 - **Changed**: Major changes to existing windows messages and other forms.
 - **Changed**: 🔨🔩🔧 Another massive source code refactoring.
 - **Added**: Customize window, available on fence context menu of each fence that allow user to tweak all available options.
@@ -191,9 +200,11 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Fixed**: 🐛 Bug on Unicode folder icon.
 
 ## 2.5.2.95
+
 - **Fixed**: 🐛 🪲 A majority of minor bugs and annoyances
 
 ## 2.5.2.111 Release 7
+
 - **Added**: Program made single instance (with a twist 😃).
 - **Added**: "Clear Dead Shortcuts" right click option to remove all not valid shortcuts from a fence.
 - **Added**: "Send To Desktop" right click option to copy a shortcut to desktop (📝 Use CTRL + right click).
@@ -207,6 +218,7 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Fixed**: 🪲 🐛 Edit icon panel. Now arguments editing, icon preview, restore default settings bugs are eliminated.
 
 ## 2.5.2.125
+
 - **Fixed**: 🐛 Folder name display for folder with dots on their name.
 - **Fixed**: 🐛 Steam shortcuts support finally fixed https://github.com/limbo666/DesktopFences/issues/25.
 - **Added**: Function to override Win + D key combination. Fences now re-appearing after Win + D is pressed https://github.com/limbo666/DesktopFences/issues/26.
@@ -218,6 +230,7 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Changed**: Double click on fence title scrolls up/down. Ctrl + Click enters rename mode. Requested on https://github.com/limbo666/DesktopFences/issues/38.
 
 ## 2.5.3.135
+
 - **Fixed**: 🐛 Fences now are escaping the Windows Snap Assistant. https://github.com/limbo666/DesktopFences/issues/39
 - **Changed**: Portal fences background image.
 - **Added**: ☑️ Controls to new customization functions.
@@ -227,29 +240,34 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: Basic support for MS store based apps. This is a bare minimum implementation, no shortcut icon customization support. 🐞 Bugs expected to be found on this. https://github.com/limbo666/DesktopFences/issues/34
 - **Fixed**: 🐛 Bug with program stability. Caused by icon updates and introduced during code migration.
 - **Fixed**: 🐛 Bug with lost context menu on fence customization and dead shortcut cleanup. https://github.com/limbo666/DesktopFences/issues/27
-- **Added**: ✨🔎📣 Search pane "SpotSearch" to search and quick launch shortcuts in all data fences. 🔥📝 Use hotkey ``CTRL+` ``
+- **Added**: ✨🔎📣 Search pane "SpotSearch" to search and quick launch shortcuts in all data fences. 🔥📝 Use hotkey `` CTRL+`  ``
 - **Changed**: 🔩 Some code refactoring.
 
 ## 2.5.3.137 Release 8
+
 - **Added**: ☑️ Update checker engine
 - **Fixed**: 🐛 Missing functions from drop icon restored.
 - **Added**: ⚙️ Additional tweaks to automate icon extraction to desktop on fence deletion and icon removal from desktop on drop to fences.
 
 ## 2.5.3.140
+
 - **Added**: ☑️ Tweak to select a key combination for SpotSearch (~, title, space, q, F1)
 
 ## 2.5.3.144
+
 - **Changed**: Initial startup values and fences. Added a short Note fence on first start for user information.
 - **Fixed**: 🐛 Bug in the fence renaming escape mechanism.
 - **Added**: ☑️ Tweak to show/hide file extensions on Portal Fences.
 - **Added**: ☑️ Filters for Portal Fences.
 
 ## 2.5.3.145
+
 - **Changed**: Portal Fence filters. Added predefined filters. Added a (hidden) option to disable wildcards.
 - **Added**: ☑️ Filter history for Portal Fence filters.
 - **Fixed**: 🐛 Bug in tint application.
 
 ## 2.5.3.155
+
 - **Changed**: 🎨 Customization window for Portal Fences now allows changes to icon size, icon text, etc., which were previously disabled.
 - **Changed**: Snap logic improved for better Snap Near Fences functionality.
 - **Changed**: 🆒 Right-click menu items on Data Fences are now populated dynamically and displayed only when actions are available.
@@ -259,85 +277,127 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 - **Added**: ☑️ Reset and Clear All Data buttons in Options.
 
 ## 2.5.4.161
+
 - **Added**: 💥 Tabs❕ 👋 Half of the tabs code was already present, but this release involved a long journey of debugging, stabilizing, and improving functionality to finally bring tabs to life.
 - **Fixed**: 🐛 Minor bugs discovered during tab development. Overall program stability improved.
 - **Changed**: Backup engine updated. The program now backs up and restores options.json (if selected during restore).
 
 ## 2.5.4.170
+
 - **Added**: 🎨 Icon customization option for shortcuts targeting folders.
 - **Added**: Support for rearranging icons on tabs using CTRL + Drag.
 
 ## 2.5.4.172
+
 - **Fixed**: 💊 Visual glitches in various program functions.
 - **Fixed**: 🐛 Missing context menu for weblinks dropped into fences.
 - **Added**: 🎨 Icon customization option for shortcuts targeting weblinks. (This one was not easy.)
 
 ## 2.5.4.178
+
 - **Changed**: Massive tab-related adjustments.
 - **Changed**: Backup and Export/Import engine updated to support tabs.
 - **Fixed**: 🐛 Several minor bugs.
 
 ## 2.5.4.183
+
 - **Changed**: Heart Menu rearranged.
 - **Added**: Tab overflow management and navigation mechanism.
 - **Fixed**: 🐛 Bug in settings application from the Options window.
 
 ## 2.5.4.184
+
 - **Changed**: Log engine optimized to reduce file system load.
 
 ## 2.5.4.186
+
 - **Added**: Basic folder navigation for Portal Fences.
 - **Changed**: Tab naming pattern.
 
 ## 2.5.4.188 (Release 9)
+
 - **Added**: ⤵️ Import tab function.
 - **Fixed**: 🐛 Tab renaming bug fixed.
 
 ---
 
-##  Summary
+## 🤖 v2.5.4+ AI-Enhanced Updates
+
+> [!IMPORTANT] > **💝 Donations Notice:** All donations should go to the **ORIGINAL DESIGNER** of this program ([limbo666](https://github.com/limbo666)).
+>
+> These additions were made using **AI (Claude by Anthropic)** for testing and learning purposes.
+> Despite being AI-assisted, we achieved beautiful and functional updates! ✨
+
+### ✨ New Features (Fences 6 Inspired)
+
+| Feature                     | Description                                |
+| --------------------------- | ------------------------------------------ |
+| 🎨 **ThemeManager**         | Light/Dark/Custom themes with color picker |
+| 📑 **DragToTabManager**     | Drag files directly to tab headers         |
+| 👁️ **QuickHideManager**     | Quick hide fences by mouse gesture         |
+| 📂 **AutoOrganizeManager**  | Automatic file organization by type        |
+| 🌀 **PortalFenceManager**   | Enhanced portal fences functionality       |
+| ✨ **LaunchEffectsManager** | Animated launch effects for files          |
+| 📝 **NoteFenceManager**     | Note-taking fences enhancement             |
+
+### 🏗️ Architecture Improvements
+
+| Component            | Description                                                                                       |
+| -------------------- | ------------------------------------------------------------------------------------------------- |
+| **ServiceLocator**   | Dependency Injection container for better modularity                                              |
+| **IFenceManager**    | Interface for FenceManager                                                                        |
+| **IBackupManager**   | Interface for backup operations                                                                   |
+| **ISettingsManager** | Interface for settings management                                                                 |
+| **ITrayManager**     | Interface for System Tray operations                                                              |
+| **Handler Classes**  | FenceManager refactored into `FenceIconHandler`, `FenceDragDropHandler`, `FenceNavigationManager` |
+
+### ⚡ Performance Enhancements
+
+| Feature                  | Description                                              |
+| ------------------------ | -------------------------------------------------------- |
+| **LazyIconLoader**       | Lazy loading for icons to reduce memory usage            |
+| **VirtualizationHelper** | UI virtualization for better performance with many items |
+
+### 🔧 Bug Fixes
+
+- Fixed MSB4803 COM reference error for .NET SDK 10 compatibility
+- All 24 unit tests passing ✅
+
+## Summary
 
 Desktop Fences + brings a powerful and visually optimized experience for users who want to organize their desktop with flexibility and style. The program is designed to enhance productivity by combining intuitive interactions, aesthetic customization, and practical right-click options.
 
 ---
 
-##  Release
+## Release
+
 Get the latest release here:
 https://github.com/limbo666/DesktopFences/releases
 
-
 ---
 
-##  Installation
+## Installation
 
 Simply extract the executable and run it. The necessary configuration files (`fences.json`, `options.json`) will be created on first run.
 Attention: Only user-writable locations are compatible. See (https://github.com/limbo666/DesktopFences/issues/51)
 
->  Compatible with Windows 10/11  
->  No installation required — fully portable
+> Compatible with Windows 10/11
+> No installation required — fully portable
 
 ---
+
 ## Stargazers over time
-[![Stargazers over time](https://starchart.cc/limbo666/DesktopFences.svg?background=%23535050&axis=%23f172cb&line=%239c34f7)](https://starchart.cc/limbo666/DesktopFences)
----
 
-##  License
+## [![Stargazers over time](https://starchart.cc/limbo666/DesktopFences.svg?background=%23535050&axis=%23f172cb&line=%239c34f7)](https://starchart.cc/limbo666/DesktopFences)
+
+## License
 
 This project is licensed under the [MIT License](License.md).
 
 ---
 
-##  Credits
+## Credits
 
-Based on the original **BirdyFences** by HakanKokcu  
-Desktop Fences + is Enhanced and maintained by Nikos Georgousis. 
+Based on the original **BirdyFences** by HakanKokcu
+Desktop Fences + is Enhanced and maintained by Nikos Georgousis.
 Hand Water Pump 2025
-
-
-
-
-
-
-
-
-
