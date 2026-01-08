@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Newtonsoft.Json.Linq;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -29,10 +30,10 @@ namespace Desktop_Fences
             SetupAutoCloseTimer(menu);
 
             // About item
-            AddMenuItem(menu, "About...", () => AboutFormManager.ShowAboutForm());
+            AddMenuItem(menu, LocalizationManager.S("About") + "...", () => AboutFormManager.ShowAboutForm());
 
             // Options item
-            AddMenuItem(menu, "Options...", () => OptionsFormManager.ShowOptionsForm());
+            AddMenuItem(menu, LocalizationManager.S("Options") + "...", () => OptionsFormManager.ShowOptionsForm());
 
             menu.Items.Add(new Separator());
 
@@ -55,7 +56,7 @@ namespace Desktop_Fences
             menu.Items.Add(new Separator());
 
             // Exit item
-            AddMenuItem(menu, "Exit", () => Application.Current.Shutdown());
+            AddMenuItem(menu, LocalizationManager.S("Exit"), () => Application.Current.Shutdown());
 
             return menu;
         }
@@ -67,7 +68,7 @@ namespace Desktop_Fences
         {
             var menu = new ContextMenu();
 
-            var removeItem = new MenuItem { Header = "Remove" };
+            var removeItem = new MenuItem { Header = LocalizationManager.S("Remove") };
             removeItem.Click += (s, e) => RemoveIconFromFence(sp, filePath);
             menu.Items.Add(removeItem);
 
@@ -110,7 +111,7 @@ namespace Desktop_Fences
 
         private static void AddNewFenceMenuItems(ContextMenu menu)
         {
-            var newFenceItem = new MenuItem { Header = "New Fence" };
+            var newFenceItem = new MenuItem { Header = LocalizationManager.S("NewFence") };
             newFenceItem.Click += (s, e) =>
             {
                 var mousePosition = System.Windows.Forms.Cursor.Position;
@@ -118,15 +119,15 @@ namespace Desktop_Fences
             };
             menu.Items.Add(newFenceItem);
 
-            var newPortalFenceItem = new MenuItem { Header = "New Portal Fence" };
+            var newPortalFenceItem = new MenuItem { Header = LocalizationManager.S("NewPortalFence") };
             newPortalFenceItem.Click += (s, e) =>
             {
                 var mousePosition = System.Windows.Forms.Cursor.Position;
-                FenceManager.CreateNewFence("New Portal Fence", "Portal", mousePosition.X, mousePosition.Y);
+                FenceManager.CreateNewFence(LocalizationManager.S("NewPortalFence"), "Portal", mousePosition.X, mousePosition.Y);
             };
             menu.Items.Add(newPortalFenceItem);
 
-            var newNoteFenceItem = new MenuItem { Header = "New Note Fence" };
+            var newNoteFenceItem = new MenuItem { Header = LocalizationManager.S("NewNoteFence") };
             newNoteFenceItem.Click += (s, e) =>
             {
                 var mousePosition = System.Windows.Forms.Cursor.Position;
@@ -144,7 +145,7 @@ namespace Desktop_Fences
 
             var enableTabsItem = new MenuItem
             {
-                Header = "Enable Tabs On This Fence",
+                Header = LocalizationManager.S("EnableTabsOnFence"),
                 IsCheckable = true,
                 IsChecked = tabsEnabled
             };
@@ -156,7 +157,7 @@ namespace Desktop_Fences
 
         private static void AddDeleteFenceOption(ContextMenu menu, dynamic fence)
         {
-            var deleteThisFence = new MenuItem { Header = "Delete this Fence" };
+            var deleteThisFence = new MenuItem { Header = LocalizationManager.S("DeleteFence") };
             deleteThisFence.Click += (s, e) =>
             {
                 bool result = MessageBoxesManager.ShowCustomMessageBoxForm();
@@ -184,17 +185,17 @@ namespace Desktop_Fences
 
         private static void AddExportImportOptions(ContextMenu menu, dynamic fence)
         {
-            var exportItem = new MenuItem { Header = "Export this Fence" };
+            var exportItem = new MenuItem { Header = LocalizationManager.S("ExportFence") };
             exportItem.Click += (s, e) => BackupManager.ExportFence(fence);
             menu.Items.Add(exportItem);
 
-            var importItem = new MenuItem { Header = "Import a Fence..." };
+            var importItem = new MenuItem { Header = LocalizationManager.S("ImportFence") + "..." };
             importItem.Click += (s, e) => BackupManager.ImportFence();
             menu.Items.Add(importItem);
 
             var restoreItem = new MenuItem
             {
-                Header = "Restore Last Deleted Fence",
+                Header = LocalizationManager.S("RestoreFence"),
                 Visibility = BackupManager.IsRestoreAvailable ? Visibility.Visible : Visibility.Collapsed
             };
             restoreItem.Click += (s, e) => BackupManager.RestoreLastDeletedFence();
@@ -238,7 +239,7 @@ namespace Desktop_Fences
 
             var miAlwaysAdmin = new MenuItem
             {
-                Header = "Always run as administrator",
+                Header = LocalizationManager.S("AlwaysRunAsAdmin"),
                 IsCheckable = true,
                 IsChecked = alwaysAdmin
             };

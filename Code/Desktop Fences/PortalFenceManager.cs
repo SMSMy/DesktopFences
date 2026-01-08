@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using IWshRuntimeLibrary;
 using Newtonsoft.Json.Linq;
 using Microsoft.VisualBasic;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -127,7 +128,7 @@ namespace Desktop_Fences
         /// </summary>
         private bool IsMatch(string text, string pattern)
         {
-            // Use VB's Like operator or simple Regex. 
+            // Use VB's Like operator or simple Regex.
             // For a dependency-free C# solution, we convert glob to regex.
             try
             {
@@ -213,7 +214,7 @@ namespace Desktop_Fences
             }
         }
 
-     
+
         private void ProcessPendingEvents(object sender, EventArgs e)
         {
             _debounceTimer.Stop();
@@ -367,12 +368,12 @@ namespace Desktop_Fences
 
                 FenceManager.ClickEventAdder(sp, path, Directory.Exists(path));
 
-          
+
                 // Create and attach context menu
                 ContextMenu contextMenu = new ContextMenu();
 
                 // 1. Copy Item (File Object)
-                MenuItem copyFileItem = new MenuItem { Header = "Copy Item" };
+                MenuItem copyFileItem = new MenuItem { Header = LocalizationManager.S("CopyItem") };
                 copyFileItem.Click += (s, e) =>
                 {
                     try
@@ -391,7 +392,7 @@ namespace Desktop_Fences
                 contextMenu.Items.Add(copyFileItem);
 
                 // 2. Cut Item (File Object with Move Effect)
-                MenuItem cutFileItem = new MenuItem { Header = "Cut Item" };
+                MenuItem cutFileItem = new MenuItem { Header = LocalizationManager.S("CutItem") };
                 cutFileItem.Click += (s, e) =>
                 {
                     try
@@ -420,12 +421,12 @@ namespace Desktop_Fences
                 contextMenu.Items.Add(cutFileItem);
 
                 // 3. Rename item (Existing)
-                MenuItem renameItem = new MenuItem { Header = "Rename item" };
+                MenuItem renameItem = new MenuItem { Header = LocalizationManager.S("RenameItem") };
                 renameItem.Click += (s, e) => RenameItem(path, sp);
                 contextMenu.Items.Add(renameItem);
 
                 // 4. Delete item (Existing)
-                MenuItem deleteItem = new MenuItem { Header = "Delete item" };
+                MenuItem deleteItem = new MenuItem { Header = LocalizationManager.S("DeleteItem") };
                 deleteItem.Click += (s, e) => DeleteItem(path, sp);
                 contextMenu.Items.Add(deleteItem);
 
@@ -433,7 +434,7 @@ namespace Desktop_Fences
                 contextMenu.Items.Add(new Separator());
 
                 // 6. Copy path (Existing - Moved to bottom)
-                MenuItem copyPathItem = new MenuItem { Header = "Copy path" };
+                MenuItem copyPathItem = new MenuItem { Header = LocalizationManager.S("CopyPath") };
                 copyPathItem.Click += (s, e) => CopyPathOrTarget(path);
                 contextMenu.Items.Add(copyPathItem);
 

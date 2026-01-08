@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -78,7 +79,7 @@ namespace Desktop_Fences
                 _userAccentColor = mediaColor;
 
                 // Modern WPF window setup with DPI awareness
-                this.Title = "Customize Fence";
+                this.Title = LocalizationManager.S("CustomizeFence");
                 this.Width = 500;
                 this.Height = 675;
                 this.WindowStartupLocation = WindowStartupLocation.Manual;
@@ -184,7 +185,7 @@ namespace Desktop_Fences
             // Title label
             TextBlock titleBlock = new TextBlock
             {
-                Text = "Customize Fence",
+                Text = LocalizationManager.S("CustomizeFence"),
                 FontFamily = new FontFamily("Segoe UI"),
                 FontSize = 18,
                 FontWeight = FontWeights.Bold,
@@ -282,8 +283,8 @@ namespace Desktop_Fences
             // 1. Default Button (Moved Left & Restyled to Dark Gray)
             Button defaultButton = new Button
             {
-                Content = "Default",
-                Width = 80, // Slightly smaller to fit 4 buttons
+                Content = LocalizationManager.S("Default"),
+                Width = 80,
                 Height = 34,
                 FontFamily = new FontFamily("Segoe UI"),
                 FontSize = 12,
@@ -299,7 +300,7 @@ namespace Desktop_Fences
             // 2. Apply Button (New! Green, in old Default location)
             Button applyButton = new Button
             {
-                Content = "Apply",
+                Content = LocalizationManager.S("Apply"),
                 Width = 100,
                 Height = 34,
                 FontFamily = new FontFamily("Segoe UI"),
@@ -316,7 +317,7 @@ namespace Desktop_Fences
             // 3. Cancel Button
             Button cancelButton = new Button
             {
-                Content = "Cancel",
+                Content = LocalizationManager.S("Cancel"),
                 Width = 100,
                 Height = 33,
                 FontFamily = new FontFamily("Segoe UI"),
@@ -334,7 +335,7 @@ namespace Desktop_Fences
             // 4. Save Button
             Button saveButton = new Button
             {
-                Content = "Save",
+                Content = LocalizationManager.S("Save"),
                 Width = 100,
                 Height = 34,
                 FontFamily = new FontFamily("Segoe UI"),
@@ -361,7 +362,7 @@ namespace Desktop_Fences
         {
             GroupBox fenceGroupBox = new GroupBox
             {
-                Header = "Fence",
+                Header = LocalizationManager.S("Fence"),
                 FontFamily = new FontFamily("Segoe UI"),
                 FontSize = 14,
                 FontWeight = FontWeights.Bold,
@@ -372,10 +373,10 @@ namespace Desktop_Fences
 
             StackPanel fenceStack = new StackPanel { Orientation = Orientation.Vertical };
 
-            CreateDropdownField(fenceStack, "Custom Color:", _validColors, out _cmbCustomColor);
-            CreateDropdownField(fenceStack, "Custom Launch Effect:", _validEffects, out _cmbCustomLaunchEffect);
-            CreateDropdownField(fenceStack, "Fence Border Color:", _validColors, out _cmbFenceBorderColor);
-            CreateNumericField(fenceStack, "Fence Border Thickness:", 0, 5, out _nudFenceBorderThickness);
+            CreateDropdownField(fenceStack, LocalizationManager.S("CustomColor") + ":", _validColors, out _cmbCustomColor);
+            CreateDropdownField(fenceStack, LocalizationManager.S("CustomLaunchEffect") + ":", _validEffects, out _cmbCustomLaunchEffect);
+            CreateDropdownField(fenceStack, LocalizationManager.S("FenceBorderColor") + ":", _validColors, out _cmbFenceBorderColor);
+            CreateNumericField(fenceStack, LocalizationManager.S("FenceBorderThickness") + ":", 0, 5, out _nudFenceBorderThickness);
 
             fenceGroupBox.Content = fenceStack;
             parent.Children.Add(fenceGroupBox);
@@ -385,7 +386,7 @@ namespace Desktop_Fences
         {
             GroupBox titleGroupBox = new GroupBox
             {
-                Header = "Title",
+                Header = LocalizationManager.S("TitleSection"),
                 FontFamily = new FontFamily("Segoe UI"),
                 FontSize = 14,
                 FontWeight = FontWeights.Bold,
@@ -396,9 +397,9 @@ namespace Desktop_Fences
 
             StackPanel titleStack = new StackPanel { Orientation = Orientation.Vertical };
 
-            CreateDropdownField(titleStack, "Title Text Color:", _validColors, out _cmbTitleTextColor);
-            CreateDropdownField(titleStack, "Title Text Size:", _validTextSizes, out _cmbTitleTextSize);
-            CreateCheckboxField(titleStack, "Bold Title Text", out _chkBoldTitleText);
+            CreateDropdownField(titleStack, LocalizationManager.S("TitleTextColor") + ":", _validColors, out _cmbTitleTextColor);
+            CreateDropdownField(titleStack, LocalizationManager.S("TitleTextSize") + ":", _validTextSizes, out _cmbTitleTextSize);
+            CreateCheckboxField(titleStack, LocalizationManager.S("BoldTitleText"), out _chkBoldTitleText);
 
             titleGroupBox.Content = titleStack;
             parent.Children.Add(titleGroupBox);
@@ -408,7 +409,7 @@ namespace Desktop_Fences
         {
             GroupBox iconsGroupBox = new GroupBox
             {
-                Header = "Icons",
+                Header = LocalizationManager.S("Icons"),
                 FontFamily = new FontFamily("Segoe UI"),
                 FontSize = 14,
                 FontWeight = FontWeights.Bold,
@@ -419,11 +420,11 @@ namespace Desktop_Fences
 
             StackPanel iconsStack = new StackPanel { Orientation = Orientation.Vertical };
 
-            CreateDropdownField(iconsStack, "Icon Size:", _validIconSizes, out _cmbIconSize);
-            CreateNumericField(iconsStack, "Icon Spacing:", 0, 20, out _nudIconSpacing);
-            CreateDropdownField(iconsStack, "Text Color:", _validColors, out _cmbTextColor);
-            CreateCheckboxField(iconsStack, "Disable Text Shadow", out _chkDisableTextShadow);
-            CreateCheckboxField(iconsStack, "Grayscale Icons", out _chkGrayscaleIcons);
+            CreateDropdownField(iconsStack, LocalizationManager.S("IconSize") + ":", _validIconSizes, out _cmbIconSize);
+            CreateNumericField(iconsStack, LocalizationManager.S("IconSpacing") + ":", 0, 20, out _nudIconSpacing);
+            CreateDropdownField(iconsStack, LocalizationManager.S("TextColor") + ":", _validColors, out _cmbTextColor);
+            CreateCheckboxField(iconsStack, LocalizationManager.S("DisableTextShadow"), out _chkDisableTextShadow);
+            CreateCheckboxField(iconsStack, LocalizationManager.S("GrayscaleIcons"), out _chkGrayscaleIcons);
 
             iconsGroupBox.Content = iconsStack;
             parent.Children.Add(iconsGroupBox);
@@ -638,7 +639,7 @@ namespace Desktop_Fences
 
 
         #region Multi-Monitor Positioning
-  
+
 
 
         private void PositionFormOnMouseScreen()

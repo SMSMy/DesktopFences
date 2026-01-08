@@ -1,0 +1,29 @@
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\Desktop Fences.exe
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\Desktop Fences.deps.json
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\Desktop Fences.runtimeconfig.json
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\Desktop Fences.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\Desktop Fences.pdb
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\NAudio.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\NAudio.Asio.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\NAudio.Core.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\NAudio.Midi.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\NAudio.Wasapi.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\NAudio.WinForms.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\NAudio.WinMM.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\bin\Release\net8.0-windows7.0\win-x64\Newtonsoft.Json.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.csproj.AssemblyReference.cache
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\App.g.cs
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences_Content.g.cs
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences_MarkupCompile.cache
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.g.resources
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.AssemblyInfoInputs.cache
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.AssemblyInfo.cs
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.csproj.CoreCompileInputs.cache
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.sourcelink.json
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop .DA11B7A4.Up2Date
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\refint\Desktop Fences.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.pdb
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\Desktop Fences.genruntimeconfig.cache
+C:\Users\hshli\Desktop\poetry\DesktopFences\Code\Desktop Fences\obj\Release\net8.0-windows7.0\win-x64\ref\Desktop Fences.dll

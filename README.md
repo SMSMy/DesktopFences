@@ -330,15 +330,16 @@ Even small contributions mean a lot. Thank you for keeping this project alive an
 
 ### ✨ New Features (Fences 6 Inspired)
 
-| Feature                     | Description                                |
-| --------------------------- | ------------------------------------------ |
-| 🎨 **ThemeManager**         | Light/Dark/Custom themes with color picker |
-| 📑 **DragToTabManager**     | Drag files directly to tab headers         |
-| 👁️ **QuickHideManager**     | Quick hide fences by mouse gesture         |
-| 📂 **AutoOrganizeManager**  | Automatic file organization by type        |
-| 🌀 **PortalFenceManager**   | Enhanced portal fences functionality       |
-| ✨ **LaunchEffectsManager** | Animated launch effects for files          |
-| 📝 **NoteFenceManager**     | Note-taking fences enhancement             |
+| Feature                     | Description                                            |
+| --------------------------- | ------------------------------------------------------ |
+| 🎨 **ThemeManager**         | Light/Dark/Custom themes with color picker             |
+| 📑 **DragToTabManager**     | Drag files directly to tab headers                     |
+| 👁️ **QuickHideManager**     | Quick hide fences by mouse gesture                     |
+| 📂 **AutoOrganizeManager**  | Automatic file organization by type                    |
+| 🌀 **PortalFenceManager**   | Enhanced portal fences functionality                   |
+| ✨ **LaunchEffectsManager** | Animated launch effects for files                      |
+| 📝 **NoteFenceManager**     | Note-taking fences enhancement                         |
+| 🌐 **Arabic Localization**  | Full Arabic (العربية) language support with RTL layout |
 
 ### 🏗️ Architecture Improvements
 

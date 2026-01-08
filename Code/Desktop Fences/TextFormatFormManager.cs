@@ -9,6 +9,7 @@ using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
 using Newtonsoft.Json.Linq;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -95,7 +96,7 @@ namespace Desktop_Fences
                 _userAccentColor = Utility.GetColorFromName(selectedColorName);
 
                 // Modern WPF window setup with DPI awareness (same as customize form)
-                this.Title = "Text Format";
+                this.Title = LocalizationManager.S("FormatText");
                 this.Width = 400;
                 this.Height = 400;
                 this.WindowStartupLocation = WindowStartupLocation.Manual;
@@ -199,7 +200,7 @@ namespace Desktop_Fences
             // Title label (same style as customize form)
             TextBlock titleBlock = new TextBlock
             {
-                Text = "Text Format",
+                Text = LocalizationManager.S("FormatText"),
                 FontFamily = new FontFamily("Segoe UI"),
                 FontSize = 18,
                 FontWeight = FontWeights.Bold,
@@ -283,7 +284,7 @@ namespace Desktop_Fences
             // Apply button with green color (same as Default button in customize form)
             Button applyButton = new Button
             {
-                Content = "Apply",
+                Content = LocalizationManager.S("Apply"),
                 Width = 100,
                 Height = 34,
                 FontFamily = new FontFamily("Segoe UI"),
@@ -300,7 +301,7 @@ namespace Desktop_Fences
             // Cancel button (same style as customize form)
             Button cancelButton = new Button
             {
-                Content = "Cancel",
+                Content = LocalizationManager.S("Cancel"),
                 Width = 100,
                 Height = 33,
                 FontFamily = new FontFamily("Segoe UI"),
@@ -318,7 +319,7 @@ namespace Desktop_Fences
             // Save button with accent color (same as customize form)
             Button saveButton = new Button
             {
-                Content = "Save",
+                Content = LocalizationManager.S("Save"),
                 Width = 100,
                 Height = 34,
                 FontFamily = new FontFamily("Segoe UI"),
@@ -634,7 +635,7 @@ namespace Desktop_Fences
         {
             try
             {
-                // Method 1: Dictionary access  
+                // Method 1: Dictionary access
                 try
                 {
                     var fenceDict = fence as IDictionary<string, object>;
@@ -767,7 +768,7 @@ namespace Desktop_Fences
                 double fontSize = GetNoteFontSizeValue(fontSizeToApply);
                 _noteTextBox.FontSize = fontSize;
 
-                // Apply Font Family - ALWAYS apply something  
+                // Apply Font Family - ALWAYS apply something
                 string fontFamilyToApply = selectedFontFamily == "Default" ? "Segoe UI" : selectedFontFamily;
                 _noteTextBox.FontFamily = new FontFamily(fontFamilyToApply);
 

@@ -23,6 +23,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using static System.Net.Mime.MediaTypeNames;
 using Color = System.Drawing.Color;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -3764,7 +3765,7 @@ namespace Desktop_Fences
                 var noteFence = new
                 {
                     Id = Guid.NewGuid().ToString(), // Unique ID
-                    Title = "Desktop Fences+ Startup Tips", // Explicit Name
+                    Title = LocalizationManager.S("StartupTipsTitle"), // Explicit Name
                     X = 20.0,   // Positioned below the data fence
                     Y = 200.0,  // Data fence ends then this fence begins
                     Width = 555.0,
@@ -3777,17 +3778,7 @@ namespace Desktop_Fences
                     TextColor = "Teal",         // Teal text
 
                     // Note Settings
-                    NoteContent = "WELCOME TO DESKTOP FENCES +\r\n" +
-                                  "---------------------------\r\n" +
-                                  "• Roll Up/Down: Double-click the fence title bar.\r\n" +
-                                  "• Rename: Ctrl + Click the title bar (Enter to save).\r\n" +
-                                  "• Search (SpotSearch): Press Ctrl + ` (Tilde) to find any icon instantly.\r\n" +
-                                  "• Options: Click the '♥' menu icon (top-left).\r\n" +
-                                  "• Reorder Icons on a Fence: Ctrl + Drag icon to new position.\r\n" +
-                                  "• Context Menu: Right-click icons or Fences for more options.\r\n" +
-                                  " \r\n" +
-                                  "TIP: Ctrl + Click or Ctrl + Right-click, gives even more options.\r\n\r\n" +
-                                  "Try customizing this fence! Right-click the title bar -> Customize...",
+                    NoteContent = LocalizationManager.S("StartupTipsContent"),
 
                     NoteFontSize = "Medium",
                     NoteFontFamily = "Segoe UI",
@@ -4149,10 +4140,10 @@ namespace Desktop_Fences
             ContextMenu CnMnFenceManager = new ContextMenu();
             // MenuItem miNewFence = new MenuItem { Header = "New Fence" };
             // MenuItem miNewPortalFence = new MenuItem { Header = "New Portal Fence" };
-            MenuItem miNewNoteFence = new MenuItem { Header = "New Note Fence" };
+            MenuItem miNewNoteFence = new MenuItem { Header = LocalizationManager.S("NewNoteFence") };
             // MenuItem miRemoveFence = new MenuItem { Header = "Delete Fence" };
             // MenuItem miXT = new MenuItem { Header = "Exit" };
-            MenuItem miHide = new MenuItem { Header = "Hide Fence" }; // New Hide Fence item
+            MenuItem miHide = new MenuItem { Header = LocalizationManager.S("HideFence") }; // New Hide Fence item
                                                                       // CnMnFenceManager.Items.Add(miRemoveFence);
             CnMnFenceManager.Items.Add(miHide); // Add Hide Fence
                                                 // Add Note fence specific context menu items if this is a Note fence
@@ -4188,7 +4179,7 @@ namespace Desktop_Fences
                 // We'll modify the context menu after InitContent() is called
             }
             //Peek behind fence
-            MenuItem miPeekBehind = new MenuItem { Header = "Peek Behind" };
+            MenuItem miPeekBehind = new MenuItem { Header = LocalizationManager.S("PeekBehind") };
             CnMnFenceManager.Items.Add(miPeekBehind);
             miPeekBehind.Click += (s, e) =>
             {
@@ -4327,7 +4318,7 @@ namespace Desktop_Fences
             //  CnMnFenceManager.Items.Add(new Separator());
 
             //CnMnFenceManager.Items.Add(miNewCustomize);
-            MenuItem miCustomize = new MenuItem { Header = "Customize..." };
+            MenuItem miCustomize = new MenuItem { Header = LocalizationManager.S("Customize") + "..." };
             miCustomize.Click += (s, e) =>
             {
                 try
@@ -4679,7 +4670,7 @@ namespace Desktop_Fences
                 // C. Export All (Data Fence + Ctrl)
                 if (isCtrlPressed && isDataFence)
                 {
-                    miExportAllToDesktop = new MenuItem { Header = "Export all icons to desktop" };
+                    miExportAllToDesktop = new MenuItem { Header = LocalizationManager.S("ExportAllToDesktop") };
                     miExportAllToDesktop.Click += (s, e) => ExportAllIconsToDesktop(fence);
 
                     // Insert before Customize (safe lookup)
@@ -4694,7 +4685,7 @@ namespace Desktop_Fences
                 // D. Name After Target (Portal Fence + Ctrl)
                 if (isCtrlPressed && isPortalFence)
                 {
-                    miNameAfterPath = new MenuItem { Header = "Name Fence After Target Path" };
+                    miNameAfterPath = new MenuItem { Header = LocalizationManager.S("NameAfterPath") };
                     miNameAfterPath.Click += (s, e) =>
                     {
                         // Get Base Path (Not navigation path)

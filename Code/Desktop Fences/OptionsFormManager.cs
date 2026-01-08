@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -32,7 +33,7 @@ namespace Desktop_Fences
 
                 _optionsWindow = new Window
                 {
-                    Title = "Desktop Fences + Options",
+                    Title = LocalizationManager.S("Options"),
                     Width = 800,
                     Height = 850,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
@@ -74,7 +75,7 @@ namespace Desktop_Fences
 
                 TextBlock titleBlock = new TextBlock
                 {
-                    Text = "Options",
+                    Text = LocalizationManager.S("Options"),
                     FontFamily = new FontFamily("Segoe UI"),
                     FontSize = 16,
                     FontWeight = FontWeights.Bold,
@@ -139,10 +140,10 @@ namespace Desktop_Fences
             CreateLookDeeperTab();
 
             _tabControl.SelectedIndex = _lastSelectedTabIndex;
-            CreateTabButton(tabPanel, "General", 0, _lastSelectedTabIndex == 0);
-            CreateTabButton(tabPanel, "Style", 1, _lastSelectedTabIndex == 1);
-            CreateTabButton(tabPanel, "Tools", 2, _lastSelectedTabIndex == 2);
-            CreateTabButton(tabPanel, "Look Deeper", 3, _lastSelectedTabIndex == 3);
+            CreateTabButton(tabPanel, LocalizationManager.S("GeneralSettings"), 0, _lastSelectedTabIndex == 0);
+            CreateTabButton(tabPanel, LocalizationManager.S("AppearanceSettings"), 1, _lastSelectedTabIndex == 1);
+            CreateTabButton(tabPanel, LocalizationManager.S("Tools"), 2, _lastSelectedTabIndex == 2);
+            CreateTabButton(tabPanel, LocalizationManager.S("AdvancedSettings"), 3, _lastSelectedTabIndex == 3);
 
             contentBorder.Child = _tabControl;
             Grid.SetColumn(tabPanel, 0); contentGrid.Children.Add(tabPanel);
@@ -193,39 +194,57 @@ namespace Desktop_Fences
         {
             TabItem t = new TabItem();
             StackPanel c = new StackPanel();
-            CreateSectionHeader(c, "Startup", _userAccentColor);
-            CreateCheckBox(c, "Start with Windows", "StartWithWindows", TrayManager.IsStartWithWindows);
-            CreateSectionHeader(c, "Selections", _userAccentColor);
-            CreateCheckBox(c, "Single Click to Launch", "SingleClickToLaunch", SettingsManager.SingleClickToLaunch);
-            CreateCheckBox(c, "Enable Snap Near Fences", "EnableSnapNearFences", SettingsManager.IsSnapEnabled);
-            CreateCheckBox(c, "Enable Dimension Snap", "EnableDimensionSnap", SettingsManager.EnableDimensionSnap);
-            CreateCheckBox(c, "Enable Tray Icon", "EnableTrayIcon", SettingsManager.ShowInTray);
-            CreateCheckBox(c, "Use Recycle Bin on Portal Fences 'Delete item' command", "UseRecycleBin", SettingsManager.UseRecycleBin);
+
+            // Language Section
+            CreateSectionHeader(c, LocalizationManager.S("Language"), _userAccentColor);
+            CreateLanguageComboBox(c);
+
+            CreateSectionHeader(c, LocalizationManager.S("Startup"), _userAccentColor);
+            CreateCheckBox(c, LocalizationManager.S("StartWithWindows"), "StartWithWindows", TrayManager.IsStartWithWindows);
+            CreateSectionHeader(c, LocalizationManager.S("Behavior"), _userAccentColor);
+            CreateCheckBox(c, LocalizationManager.S("SingleClickToLaunch"), "SingleClickToLaunch", SettingsManager.SingleClickToLaunch);
+            CreateCheckBox(c, LocalizationManager.S("EnableSnapNearFences"), "EnableSnapNearFences", SettingsManager.IsSnapEnabled);
+            CreateCheckBox(c, LocalizationManager.S("EnableDimensionSnap"), "EnableDimensionSnap", SettingsManager.EnableDimensionSnap);
+            CreateCheckBox(c, LocalizationManager.S("EnableTrayIcon"), "EnableTrayIcon", SettingsManager.ShowInTray);
+            CreateCheckBox(c, LocalizationManager.S("UseRecycleBin"), "UseRecycleBin", SettingsManager.UseRecycleBin);
             t.Content = new ScrollViewer { Content = c, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
             _tabControl.Items.Add(t);
+        }
+
+        private static void CreateLanguageComboBox(StackPanel p)
+        {
+            Grid g = new Grid { Margin = new Thickness(0, 5, 0, 15) };
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(100) });
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
+            g.Children.Add(new TextBlock { Text = LocalizationManager.S("Language"), FontSize = 13, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 0, 10, 0) });
+            ComboBox cb = new ComboBox { Name = "LanguageComboBox", Height = 25, FontSize = 13, VerticalAlignment = VerticalAlignment.Center };
+            cb.Items.Add("English");
+            cb.Items.Add("العربية");
+            cb.SelectedIndex = SettingsManager.Language == "ar" ? 1 : 0;
+            Grid.SetColumn(cb, 1); g.Children.Add(cb); p.Children.Add(g);
         }
 
         private static void CreateStyleTab()
         {
             TabItem t = new TabItem();
             StackPanel c = new StackPanel();
-            CreateSectionHeader(c, "Choices", ColorStyle);
-            CreateCheckBox(c, "Enable Portal Fences Watermark", "EnablePortalWatermark", SettingsManager.ShowBackgroundImageOnPortalFences);
-            var n = CreateCheckBoxReturn(c, "Enable Note Fences Watermark (Coming Soon)", "EnableNoteWatermark", false);
+            CreateSectionHeader(c, LocalizationManager.S("Choices"), ColorStyle);
+            CreateCheckBox(c, LocalizationManager.S("EnablePortalWatermark"), "EnablePortalWatermark", SettingsManager.ShowBackgroundImageOnPortalFences);
+            var n = CreateCheckBoxReturn(c, LocalizationManager.S("EnableNoteWatermark"), "EnableNoteWatermark", false);
             n.IsEnabled = false; n.Foreground = Brushes.Gray;
-            CreateCheckBox(c, "Disable Fence Scrollbars", "DisableFenceScrollbars", SettingsManager.DisableFenceScrollbars);
-            CreateCheckBox(c, "Enable Sounds", "EnableSounds", SettingsManager.EnableSounds);
+            CreateCheckBox(c, LocalizationManager.S("DisableScrollbars"), "DisableFenceScrollbars", SettingsManager.DisableFenceScrollbars);
+            CreateCheckBox(c, LocalizationManager.S("EnableSounds"), "EnableSounds", SettingsManager.EnableSounds);
 
-            CreateSectionHeader(c, "Appearance", ColorStyle);
-            CreateSliderControl(c, "Fence Tint", "TintSlider", SettingsManager.TintValue);
-            CreateSliderControl(c, "Menu Tint", "MenuTintSlider", SettingsManager.MenuTintValue);
+            CreateSectionHeader(c, LocalizationManager.S("Appearance"), ColorStyle);
+            CreateSliderControl(c, LocalizationManager.S("FenceTint"), "TintSlider", SettingsManager.TintValue);
+            CreateSliderControl(c, LocalizationManager.S("MenuTint"), "MenuTintSlider", SettingsManager.MenuTintValue);
             CreateColorComboBox(c);
             CreateLaunchEffectComboBox(c);
 
-            CreateSectionHeader(c, "Icons", ColorStyle);
-            c.Children.Add(new TextBlock { Text = "Menu Icon", FontWeight = FontWeights.SemiBold, Margin = new Thickness(15, 5, 0, 5) });
+            CreateSectionHeader(c, LocalizationManager.S("Icons"), ColorStyle);
+            c.Children.Add(new TextBlock { Text = LocalizationManager.S("MenuIcon"), FontWeight = FontWeights.SemiBold, Margin = new Thickness(15, 5, 0, 5) });
             CreateIconRadioButtonGroup(c, "MenuIconGroup", new Dictionary<string, int> { { "♥", 0 }, { "☰", 1 }, { "≣", 2 }, { "𓃑", 3 } }, SettingsManager.MenuIcon);
-            c.Children.Add(new TextBlock { Text = "Lock Icon", FontWeight = FontWeights.SemiBold, Margin = new Thickness(15, 10, 0, 5) });
+            c.Children.Add(new TextBlock { Text = LocalizationManager.S("LockIcon"), FontWeight = FontWeights.SemiBold, Margin = new Thickness(15, 10, 0, 5) });
             CreateIconRadioButtonGroup(c, "LockIconGroup", new Dictionary<string, int> { { "🛡️", 0 }, { "🔑", 1 }, { "🔐", 2 }, { "🔒", 3 } }, SettingsManager.LockIcon);
 
             t.Content = new ScrollViewer { Content = c, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
@@ -236,7 +255,7 @@ namespace Desktop_Fences
         {
             TabItem t = new TabItem();
             StackPanel c = new StackPanel();
-            CreateSectionHeader(c, "Tools", ColorTools);
+            CreateSectionHeader(c, LocalizationManager.S("Tools"), ColorTools);
 
             Grid g = new Grid { Margin = new Thickness(0, 10, 0, 0) };
             g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(120) });
@@ -246,23 +265,23 @@ namespace Desktop_Fences
             g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(15) });
             g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(45) });
 
-            Button b1 = CreateStyledButton("Backup", ColorTools); b1.Click += (s, e) => BackupManager.BackupData();
-            Button b2 = CreateStyledButton("Restore...", Color.FromRgb(255, 152, 0)); b2.Click += (s, e) => RestoreBackup();
-            Button b3 = CreateStyledButton("Open Backups Folder", Color.FromRgb(0, 123, 191)); b3.Click += (s, e) => OpenBackupsFolder();
+            Button b1 = CreateStyledButton(LocalizationManager.S("Backup"), ColorTools); b1.Click += (s, e) => BackupManager.BackupData();
+            Button b2 = CreateStyledButton(LocalizationManager.S("Restore") + "...", Color.FromRgb(255, 152, 0)); b2.Click += (s, e) => RestoreBackup();
+            Button b3 = CreateStyledButton(LocalizationManager.S("OpenBackupsFolder"), Color.FromRgb(0, 123, 191)); b3.Click += (s, e) => OpenBackupsFolder();
             Grid.SetRow(b1, 0); Grid.SetColumn(b1, 0);
             Grid.SetRow(b2, 0); Grid.SetColumn(b2, 2);
             Grid.SetRow(b3, 2); Grid.SetColumn(b3, 0); Grid.SetColumnSpan(b3, 3);
             g.Children.Add(b1); g.Children.Add(b2); g.Children.Add(b3);
             c.Children.Add(g);
 
-            CreateCheckBox(c, "Automatic Backup (Daily)", "EnableAutoBackup", SettingsManager.EnableAutoBackup);
+            CreateCheckBox(c, LocalizationManager.S("AutoBackupDaily"), "EnableAutoBackup", SettingsManager.EnableAutoBackup);
 
-            CreateSectionHeader(c, "Reset", Colors.Red);
-            Button r1 = CreateStyledButton("Reset Styles", Color.FromRgb(108, 117, 125));
+            CreateSectionHeader(c, LocalizationManager.S("Reset"), Colors.Red);
+            Button r1 = CreateStyledButton(LocalizationManager.S("ResetStyles"), Color.FromRgb(108, 117, 125));
             r1.Width = 255; r1.Height = 45; r1.Margin = new Thickness(0, 0, 0, 15);
-            r1.Click += (s, e) => { if (MessageBoxesManager.ShowCustomYesNoMessageBox("Reset all visual customizations?", "Reset")) { FenceManager.ResetAllCustomizations(); _optionsWindow.Close(); } };
+            r1.Click += (s, e) => { if (MessageBoxesManager.ShowCustomYesNoMessageBox(LocalizationManager.S("ResetStylesConfirm"), LocalizationManager.S("Reset"))) { FenceManager.ResetAllCustomizations(); _optionsWindow.Close(); } };
 
-            Button r2 = CreateStyledButton("Clear All Data", Color.FromRgb(220, 53, 69));
+            Button r2 = CreateStyledButton(LocalizationManager.S("ClearAllData"), Color.FromRgb(220, 53, 69));
             r2.Width = 255; r2.Height = 45;
             r2.Click += (s, e) => PerformFullFactoryReset();
 
@@ -278,15 +297,15 @@ namespace Desktop_Fences
         {
             TabItem t = new TabItem();
             StackPanel c = new StackPanel();
-            CreateSectionHeader(c, "Log", ColorLookDeeper);
-            CreateCheckBox(c, "Enable logging", "EnableLogging", SettingsManager.IsLogEnabled);
-            Button b = CreateStyledButton("Open Log", ColorLookDeeper); b.Width = 100; b.Height = 25; b.HorizontalAlignment = HorizontalAlignment.Left;
+            CreateSectionHeader(c, LocalizationManager.S("Log"), ColorLookDeeper);
+            CreateCheckBox(c, LocalizationManager.S("EnableLogging"), "EnableLogging", SettingsManager.IsLogEnabled);
+            Button b = CreateStyledButton(LocalizationManager.S("OpenLog"), ColorLookDeeper); b.Width = 100; b.Height = 25; b.HorizontalAlignment = HorizontalAlignment.Left;
             b.Click += (s, e) => OpenLogFile();
             c.Children.Add(b);
 
-            CreateSectionHeader(c, "Log configuration", ColorLookDeeper);
+            CreateSectionHeader(c, LocalizationManager.S("LogConfiguration"), ColorLookDeeper);
             CreateLogLevelComboBox(c);
-            CreateSectionHeader(c, "Log Categories", ColorLookDeeper);
+            CreateSectionHeader(c, LocalizationManager.S("LogCategories"), ColorLookDeeper);
 
             // This method creates checkboxes for all Enums (except Error now)
             CreateLogCategoryCheckBoxes(c);
@@ -327,10 +346,10 @@ namespace Desktop_Fences
             Grid g = new Grid { Margin = new Thickness(0, 10, 0, 10) };
             g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(100) });
             g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
-            g.Children.Add(new TextBlock { Text = "Color", FontSize = 13, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 0, 10, 0) });
+            g.Children.Add(new TextBlock { Text = LocalizationManager.S("Color"), FontSize = 13, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 0, 10, 0) });
             ComboBox cb = new ComboBox { Name = "ColorComboBox", Height = 25, FontSize = 13, VerticalAlignment = VerticalAlignment.Center };
-            foreach (string c in new[] { "Gray", "Black", "White", "Beige", "Green", "Purple", "Fuchsia", "Yellow", "Orange", "Red", "Blue", "Bismark" }) cb.Items.Add(c);
-            cb.SelectedItem = SettingsManager.SelectedColor;
+            foreach (string c in new[] { "Gray", "Black", "White", "Beige", "Green", "Purple", "Fuchsia", "Yellow", "Orange", "Red", "Blue", "Bismark" }) cb.Items.Add(LocalizationManager.S("Color_" + c));
+            cb.SelectedItem = LocalizationManager.S("Color_" + SettingsManager.SelectedColor);
             Grid.SetColumn(cb, 1); g.Children.Add(cb); p.Children.Add(g);
         }
 
@@ -339,9 +358,9 @@ namespace Desktop_Fences
             Grid g = new Grid { Margin = new Thickness(0, 10, 0, 10) };
             g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(100) });
             g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
-            g.Children.Add(new TextBlock { Text = "Effect", FontSize = 13, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 0, 10, 0) });
+            g.Children.Add(new TextBlock { Text = LocalizationManager.S("Effect"), FontSize = 13, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 0, 10, 0) });
             ComboBox cb = new ComboBox { Name = "LaunchEffectComboBox", Height = 25, FontSize = 13, VerticalAlignment = VerticalAlignment.Center };
-            foreach (string e in new[] { "Zoom", "Bounce", "FadeOut", "SlideUp", "Rotate", "Agitate", "GrowAndFly", "Pulse", "Elastic", "Flip3D", "Spiral", "Shockwave", "Matrix", "Supernova", "Teleport" }) cb.Items.Add(e);
+            foreach (string e in new[] { "Zoom", "Bounce", "FadeOut", "SlideUp", "Rotate", "Agitate", "GrowAndFly", "Pulse", "Elastic", "Flip3D", "Spiral", "Shockwave", "Matrix", "Supernova", "Teleport" }) cb.Items.Add(LocalizationManager.S("Effect_" + e));
             cb.SelectedIndex = (int)SettingsManager.LaunchEffect;
             Grid.SetColumn(cb, 1); g.Children.Add(cb); p.Children.Add(g);
         }
@@ -353,10 +372,10 @@ namespace Desktop_Fences
             Grid g = new Grid { Margin = new Thickness(0, 10, 0, 10) };
             g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(120) });
             g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(120) });
-            g.Children.Add(new TextBlock { Text = "Minimum Log Level", FontSize = 13, VerticalAlignment = VerticalAlignment.Center });
+            g.Children.Add(new TextBlock { Text = LocalizationManager.S("MinimumLogLevel"), FontSize = 13, VerticalAlignment = VerticalAlignment.Center });
             ComboBox cb = new ComboBox { Name = "LogLevelComboBox", Height = 25, FontSize = 13, VerticalAlignment = VerticalAlignment.Center };
-            foreach (var l in new[] { "Debug", "Info", "Warn", "Error" }) cb.Items.Add(l);
-            cb.SelectedItem = SettingsManager.MinLogLevel.ToString();
+            foreach (var l in new[] { "Debug", "Info", "Warn", "Error" }) cb.Items.Add(LocalizationManager.S("LogLevel_" + l));
+            cb.SelectedIndex = Array.IndexOf(new[] { "Debug", "Info", "Warn", "Error" }, SettingsManager.MinLogLevel.ToString());
             Grid.SetColumn(cb, 1); g.Children.Add(cb); p.Children.Add(g);
         }
 
@@ -378,7 +397,7 @@ namespace Desktop_Fences
 
             for (int i = 0; i < cats.Count; i++)
             {
-                var cb = new CheckBox { Content = cats[i].ToString(), Tag = cats[i], IsChecked = SettingsManager.EnabledLogCategories.Contains(cats[i]), FontSize = 13, Margin = new Thickness(15, 8, 0, 8) };
+                var cb = new CheckBox { Content = LocalizationManager.S("LogCat_" + cats[i].ToString()), Tag = cats[i], IsChecked = SettingsManager.EnabledLogCategories.Contains(cats[i]), FontSize = 13, Margin = new Thickness(15, 8, 0, 8) };
                 if (i < half) l.Children.Add(cb); else r.Children.Add(cb);
             }
 
@@ -412,6 +431,22 @@ namespace Desktop_Fences
                             newShowInTrayState = cb.IsChecked == true;
                             SettingsManager.ShowInTray = newShowInTrayState;
                             if (TrayManager.Instance != null) TrayManager.Instance.GetType().GetField("Showintray", BindingFlags.NonPublic | BindingFlags.Instance)?.SetValue(TrayManager.Instance, newShowInTrayState);
+                        }
+                    }
+                    else if (child is Grid g)
+                    {
+                        var langCombo = g.Children.OfType<ComboBox>().FirstOrDefault(c => c.Name == "LanguageComboBox");
+                        if (langCombo != null)
+                        {
+                            string newLang = langCombo.SelectedIndex == 1 ? "ar" : "en";
+                            if (newLang != SettingsManager.Language)
+                            {
+                                SettingsManager.Language = newLang;
+                                LocalizationManager.SetLanguage(newLang);
+                                MessageBoxesManager.ShowOKOnlyMessageBoxForm(
+                                    newLang == "ar" ? "يرجى إعادة تشغيل التطبيق لتطبيق اللغة الجديدة" : "Please restart the application to apply the new language",
+                                    newLang == "ar" ? "تغيير اللغة" : "Language Changed");
+                            }
                         }
                     }
                 }
@@ -508,10 +543,10 @@ namespace Desktop_Fences
             Grid.SetRow(f, 2);
             StackPanel sp = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right };
 
-            Button c = new Button { Content = "Cancel", Width = 100, Height = 34, FontWeight = FontWeights.Bold, Background = Brushes.White, BorderBrush = new SolidColorBrush(Color.FromRgb(218, 220, 224)), BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 10, 0), Cursor = Cursors.Hand };
+            Button c = new Button { Content = LocalizationManager.S("Cancel"), Width = 100, Height = 34, FontWeight = FontWeights.Bold, Background = Brushes.White, BorderBrush = new SolidColorBrush(Color.FromRgb(218, 220, 224)), BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 10, 0), Cursor = Cursors.Hand };
             c.Click += (s, e) => _optionsWindow.Close();
 
-            Button sv = new Button { Content = "Save", Width = 100, Height = 34, FontWeight = FontWeights.Bold, Background = new SolidColorBrush(_userAccentColor), Foreground = Brushes.White, BorderThickness = new Thickness(0), Cursor = Cursors.Hand };
+            Button sv = new Button { Content = LocalizationManager.S("Save"), Width = 100, Height = 34, FontWeight = FontWeights.Bold, Background = new SolidColorBrush(_userAccentColor), Foreground = Brushes.White, BorderThickness = new Thickness(0), Cursor = Cursors.Hand };
             sv.Click += (s, e) => SaveOptions();
 
             sp.Children.Add(c); sp.Children.Add(sv); f.Child = sp; mainGrid.Children.Add(f);

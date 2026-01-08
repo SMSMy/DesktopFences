@@ -2,6 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -33,7 +34,7 @@ namespace Desktop_Fences
             // Theme selection
             var themeLabel = new TextBlock
             {
-                Text = "Theme:",
+                Text = LocalizationManager.S("Theme") + ":",
                 Margin = new Thickness(0, 0, 0, 5),
                 FontWeight = FontWeights.SemiBold
             };
@@ -56,7 +57,7 @@ namespace Desktop_Fences
             // Wallpaper colors option
             _useWallpaperColors = new CheckBox
             {
-                Content = "Use wallpaper colors for accents",
+                Content = LocalizationManager.S("UseWallpaperColors"),
                 Margin = new Thickness(0, 0, 0, 15),
                 IsChecked = SettingsManager.UseWallpaperColors
             };
@@ -67,7 +68,7 @@ namespace Desktop_Fences
             // Transparency slider
             var transparencyLabel = new TextBlock
             {
-                Text = "Fence Transparency:",
+                Text = LocalizationManager.S("FenceTransparency") + ":",
                 Margin = new Thickness(0, 0, 0, 5),
                 FontWeight = FontWeights.SemiBold
             };
@@ -104,7 +105,7 @@ namespace Desktop_Fences
             // Custom color button
             _customColorButton = new Button
             {
-                Content = "Choose Custom Fence Color...",
+                Content = LocalizationManager.S("ChooseCustomColor") + "...",
                 Padding = new Thickness(15, 8, 15, 8),
                 HorizontalAlignment = HorizontalAlignment.Left
             };
@@ -114,7 +115,7 @@ namespace Desktop_Fences
             // Preview panel
             var previewLabel = new TextBlock
             {
-                Text = "Preview:",
+                Text = LocalizationManager.S("Preview") + ":",
                 Margin = new Thickness(0, 20, 0, 5),
                 FontWeight = FontWeights.SemiBold
             };

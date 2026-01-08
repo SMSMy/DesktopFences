@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -218,7 +219,7 @@ namespace Desktop_Fences
                 // No Button
                 Button btnNo = new Button
                 {
-                    Content = "No",
+                    Content = LocalizationManager.S("No"),
                     Width = 80,
                     Height = 32,
                     FontFamily = new FontFamily("Segoe UI"),
@@ -237,7 +238,7 @@ namespace Desktop_Fences
                 // Yes Button (Red for Reset/Danger actions)
                 Button btnYes = new Button
                 {
-                    Content = "Yes",
+                    Content = LocalizationManager.S("Yes"),
                     Width = 80,
                     Height = 32,
                     FontFamily = new FontFamily("Segoe UI"),

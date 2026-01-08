@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms.VisualStyles;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -241,6 +242,11 @@ namespace Desktop_Fences
 
         public static bool SingleClickToLaunch { get; set; } = true;
 
+        /// <summary>
+        /// Gets or sets the application language (en or ar).
+        /// </summary>
+        public static string Language { get; set; } = "en";
+
         // Add LaunchEffect property
         public static LaunchEffectsManager.LaunchEffect LaunchEffect { get; set; } = LaunchEffectsManager.LaunchEffect.Zoom; // Default to Zoom
 
@@ -317,6 +323,14 @@ namespace Desktop_Fences
                     try { SpotSearchModifier = optionsData.SpotSearchModifier?.ToString() ?? "Control"; } catch { SpotSearchModifier = "Control"; }
                     try { ShowPortalExtensions = optionsData.ShowPortalExtensions ?? false; } catch { ShowPortalExtensions = false; }
                     try { NoWildcardsOnPortalFilter = optionsData.NoWildcardsOnPortalFilter ?? false; } catch { NoWildcardsOnPortalFilter = false; }
+
+                    // Load Language setting
+                    try
+                    {
+                        Language = optionsData.Language?.ToString() ?? "en";
+                        LocalizationManager.SetLanguage(Language);
+                    }
+                    catch { Language = "en"; }
 
                     // Smart Key Parser
                     try
@@ -509,8 +523,8 @@ namespace Desktop_Fences
                     NoWildcardsOnPortalFilter,
                     ShowPortalExtensions,
                     EnableAutoBackup,
-                    LastAutoBackupDate
-
+                    LastAutoBackupDate,
+                    Language
                 };
 
                 // Serialize to JSON with indentation for readability

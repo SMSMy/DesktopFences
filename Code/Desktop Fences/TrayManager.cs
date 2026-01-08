@@ -16,6 +16,7 @@ using WinFormsMouseEventArgs = System.Windows.Forms.MouseEventArgs;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Microsoft.Win32;
 using Desktop_Fences.Interfaces;
+using Desktop_Fences.Localization;
 
 
 namespace Desktop_Fences
@@ -180,22 +181,22 @@ namespace Desktop_Fences
             _trayIcon.MouseClick += OnTrayIconClick; // Add single click handler
 
             var trayMenu = new ContextMenuStrip();
-            trayMenu.Items.Add("About", null, (s, e) => AboutFormManager.ShowAboutForm());
-            trayMenu.Items.Add("Options", null, (s, e) => OptionsFormManager.ShowOptionsForm());
+            trayMenu.Items.Add(LocalizationManager.S("About"), null, (s, e) => AboutFormManager.ShowAboutForm());
+            trayMenu.Items.Add(LocalizationManager.S("Options"), null, (s, e) => OptionsFormManager.ShowOptionsForm());
           //trayMenu.Items.Add("Registry Test", null, (s, e) => InterCore.ActivateLighthouseSweep()); // TEST NEW OPTIONS FORM
-            trayMenu.Items.Add("Reload All Fences", null, async (s, e) =>
+            trayMenu.Items.Add(LocalizationManager.S("ReloadFences"), null, async (s, e) =>
             {
                 reloadAllFences();
 
             });
             trayMenu.Items.Add("-");
-            _showHiddenFencesItem = new ToolStripMenuItem("Show Hidden Fences")
+            _showHiddenFencesItem = new ToolStripMenuItem(LocalizationManager.S("ShowHiddenFences"))
             {
                 Enabled = false
             };
             trayMenu.Items.Add(_showHiddenFencesItem);
             trayMenu.Items.Add("-");
-            trayMenu.Items.Add("Exit", null, (s, e) => System.Windows.Application.Current.Shutdown());
+            trayMenu.Items.Add(LocalizationManager.S("Exit"), null, (s, e) => System.Windows.Application.Current.Shutdown());
             _trayIcon.ContextMenuStrip = trayMenu;
 
             UpdateHiddenFencesMenu();
@@ -303,7 +304,7 @@ namespace Desktop_Fences
 
             var waitText = new System.Windows.Controls.TextBlock
             {
-                Text = "Reloading all fences, please wait...",
+                Text = LocalizationManager.S("ReloadingFences"),
                 FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
                 FontSize = 12,
                 Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(95, 99, 104)),
@@ -345,7 +346,7 @@ namespace Desktop_Fences
             }
             catch (Exception ex)
             {
-                MessageBoxesManager.ShowOKOnlyMessageBoxFormStatic($"An error occurred while reloading fences: {ex.Message}", "Error");
+                MessageBoxesManager.ShowOKOnlyMessageBoxFormStatic(LocalizationManager.GetString("ErrorReloadingFences", ex.Message), LocalizationManager.S("Error"));
             }
             finally
             {

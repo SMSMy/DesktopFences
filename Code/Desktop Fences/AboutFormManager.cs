@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -26,7 +27,7 @@ namespace Desktop_Fences
             {
                 var aboutWindow = new Window
                 {
-                    Title = "About Desktop Fences +",
+                    Title = LocalizationManager.S("AboutDesktopFences"),
                     Width = 480,
                     Height = 620,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
@@ -189,7 +190,7 @@ namespace Desktop_Fences
 
             TextBlock versionText = new TextBlock
             {
-                Text = $"Version {Assembly.GetExecutingAssembly().GetName().Version}",
+                Text = LocalizationManager.S("Version") + " " + Assembly.GetExecutingAssembly().GetName().Version,
                 FontFamily = new FontFamily("Segoe UI"),
                 FontSize = 14, // Your improved font size
                 Foreground = new SolidColorBrush(Color.FromRgb(95, 99, 104))
@@ -318,7 +319,7 @@ namespace Desktop_Fences
             // Title
             TextBlock titleBlock = new TextBlock
             {
-                Text = "Support Development",
+                Text = LocalizationManager.S("SupportDevelopment"),
                 FontFamily = new FontFamily("Segoe UI"),
                 FontSize = 18, // Your improved font size
                 FontWeight = FontWeights.Bold,
@@ -337,7 +338,7 @@ namespace Desktop_Fences
             // Donate Button
             Button donateButton = new Button
             {
-                Content = "♥ Donate via PayPal",
+                Content = LocalizationManager.S("DonateViaPayPal"),
                 Height = 36,
                 Padding = new Thickness(16, 0, 16, 0),
                 FontFamily = new FontFamily("Segoe UI"),
@@ -371,7 +372,7 @@ namespace Desktop_Fences
             // GitHub Button
             Button githubButton = new Button
             {
-                Content = "⚡ Visit GitHub repository",
+                Content = LocalizationManager.S("VisitGitHub"),
                 Height = 36,
                 Padding = new Thickness(16, 0, 16, 0),
                 FontFamily = new FontFamily("Segoe UI"),
@@ -520,7 +521,7 @@ namespace Desktop_Fences
             rootGrid.Children.Add(footerBorder);
         }
 
-  
+
 
         private static void OpenHWPLink()
         {
@@ -610,7 +611,7 @@ namespace Desktop_Fences
                     VerticalAlignment = VerticalAlignment.Center
                 };
 
-              
+
                 Button closeButton = new Button
                 {
                     Content = "✕",
@@ -646,7 +647,7 @@ namespace Desktop_Fences
                     VerticalAlignment = VerticalAlignment.Center
                 };
 
-               
+
                 try
                 {
                     var assembly = Assembly.GetExecutingAssembly();
@@ -667,7 +668,7 @@ namespace Desktop_Fences
 
                 imageBorder.Child = mainImage;
 
-                
+
                 TextBlock messageText = new TextBlock
                 {
                     Text = "Don't feed the dragons",
@@ -689,10 +690,10 @@ namespace Desktop_Fences
                 Button donateButton = new Button
                 {
                     Content = "Donate 999,00 €",
-                    Height = 40, 
+                    Height = 40,
                     MinWidth = 160,
                     FontFamily = new FontFamily("Segoe UI"),
-                    FontSize = 14, 
+                    FontSize = 14,
                     FontWeight = FontWeights.Bold,
                     Foreground = Brushes.White,
                     Background = new LinearGradientBrush(
@@ -727,29 +728,29 @@ namespace Desktop_Fences
 
                 footerBorder.Child = donateButton;
 
-                
+
                 closeButton.Click += async (s, e) =>
                 {
                     if (!hasClickedCloseOnce)
                     {
-                   
+
                         hasClickedCloseOnce = true;
 
-              
+
                         titleText.Text = "What!?";
                         headerBorder.Background = new LinearGradientBrush(
                             Color.FromRgb(180, 20, 60), // Dramatic red
                             Color.FromRgb(120, 10, 40),
                             0);
 
-                     
+
                         messageText.Text = "Are you sure? Think again!";
 
-                    
+
                         donateButton.Content = "Please donate";
                         donateButton.Background = new SolidColorBrush(Color.FromRgb(220, 20, 60)); // Crimson
 
-                   
+
                         try
                         {
                             var assembly = Assembly.GetExecutingAssembly();
@@ -779,7 +780,7 @@ namespace Desktop_Fences
                             LogManager.Log(LogManager.LogLevel.Error, LogManager.LogCategory.UI, $"Error loading dragon.png: {imgEx.Message}");
                         }
 
-                       
+
                         var originalLeft = easterWindow.Left;
                         var originalTop = easterWindow.Top;
 
@@ -804,7 +805,7 @@ namespace Desktop_Fences
                             await System.Threading.Tasks.Task.Delay(150);
                         }
 
-                       
+
                         closeButton.Content = "✕✕";
                         closeButton.Foreground = new SolidColorBrush(Color.FromRgb(255, 200, 200)); // Light red tint
                     }

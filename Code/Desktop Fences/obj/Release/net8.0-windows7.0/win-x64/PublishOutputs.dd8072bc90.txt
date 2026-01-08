@@ -1,0 +1,13 @@
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\Desktop Fences.exe
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\Desktop Fences.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\Desktop Fences.deps.json
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\Desktop Fences.runtimeconfig.json
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\Desktop Fences.pdb
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\NAudio.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\NAudio.Asio.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\NAudio.Core.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\NAudio.Midi.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\NAudio.Wasapi.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\NAudio.WinForms.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\NAudio.WinMM.dll
+C:\Users\hshli\Desktop\poetry\DesktopFences\Release\DesktopFences-v2.5.4-AI\Newtonsoft.Json.dll

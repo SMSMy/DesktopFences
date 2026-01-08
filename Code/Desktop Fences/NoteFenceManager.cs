@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using Desktop_Fences.Localization;
 
 namespace Desktop_Fences
 {
@@ -58,7 +59,7 @@ namespace Desktop_Fences
                 // Debug logging to see what values we're getting
                 LogManager.Log(LogManager.LogLevel.Info, LogManager.LogCategory.FenceCreation,
                     $"Loading Note fence settings - FontSize: '{noteFontSize}', FontFamily: '{noteFontFamily}'");
-               
+
 
                                 // Create the main TextBox for note content
                                 TextBox noteTextBox = new TextBox
@@ -74,7 +75,7 @@ namespace Desktop_Fences
                                     //  Background = Brushes.Transparent,
                                     Background = GetTextBackgroundBrush(fence),
                                     Foreground = GetNoteForeground(fence),
-                                 
+
                                     FontSize = GetNoteFontSize(noteFontSize),
                     FontFamily = GetNoteFontFamily(noteFontFamily),
                     BorderThickness = GetTextBoxBorder().thickness,
@@ -171,7 +172,7 @@ namespace Desktop_Fences
                 }
                 catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException) { }
 
-                // Method 2: Dictionary access  
+                // Method 2: Dictionary access
                 try
                 {
                     var fenceDict = fence as IDictionary<string, object>;
@@ -210,7 +211,7 @@ namespace Desktop_Fences
 
         #region Note Editing Behavior - Used by: CreateNoteContent()
 
-    
+
 
         /// <summary>
         /// Sets up complete editing behavior with visual feedback and auto-save
@@ -297,7 +298,7 @@ namespace Desktop_Fences
 
                     noteTextBox.Background = new SolidColorBrush(highlightedColor) { Opacity = 0.9 };
 
-                    // During edit mode, stick to a standard high-contrast color (Dark Blue) 
+                    // During edit mode, stick to a standard high-contrast color (Dark Blue)
                     // or calculate a high-contrast color against the highlight
                     noteTextBox.Foreground = Brushes.DarkBlue;
 
@@ -377,7 +378,7 @@ namespace Desktop_Fences
                     var freshFence = FenceManager.GetFenceData().FirstOrDefault(f => f.Id?.ToString() == fenceId) ?? fence;
                     // --- FIX END ---
 
-               
+
                     // Use FRESH fence color for the Highlight calculation
                     string fenceColor = freshFence.CustomColor?.ToString() ?? SettingsManager.SelectedColor;
                     Color baseColor = Utility.GetColorFromName(fenceColor ?? "Gray");
@@ -517,8 +518,8 @@ namespace Desktop_Fences
         {
             try
             {
-                
-            
+
+
 
                 //        // Text formatting submenu
                 //    //    MenuItem formatMenu = new MenuItem { Header = "Text Format" };
@@ -560,7 +561,7 @@ namespace Desktop_Fences
 
 
                 // Text Format form (new unified approach)
-                MenuItem textFormatFormItem = new MenuItem { Header = "Text Format..." };
+                MenuItem textFormatFormItem = new MenuItem { Header = LocalizationManager.S("FormatText") + "..." };
                 textFormatFormItem.Click += (s, e) =>
                 {
                     try
@@ -581,11 +582,11 @@ namespace Desktop_Fences
                 // A seperator to commnds to note-specific commands
                 menu.Items.Add(new Separator());
 
-                MenuItem copyAllItem = new MenuItem { Header = "Copy All Text" };
+                MenuItem copyAllItem = new MenuItem { Header = LocalizationManager.S("CopyAllText") };
                 copyAllItem.Click += (s, e) => CopyAllNoteText(noteTextBox);
                 menu.Items.Add(copyAllItem);
 
-                MenuItem clearAllItem = new MenuItem { Header = "Clear All Text" };
+                MenuItem clearAllItem = new MenuItem { Header = LocalizationManager.S("ClearAllText") };
                 clearAllItem.Click += (s, e) => ClearAllNoteText(fence, noteTextBox);
                 menu.Items.Add(clearAllItem);
 
@@ -883,7 +884,7 @@ namespace Desktop_Fences
             return spellCheck?.ToLower() != "false"; // Default to true
         }
 
-        
+
 
 
         public static Brush GetNoteForeground(dynamic fence)
@@ -1072,8 +1073,8 @@ namespace Desktop_Fences
             return 0.2126 * r + 0.7152 * g + 0.0722 * b;
         }
 
- 
-     
+
+
         /// <summary>
         /// Gets smart default text color based on fence background
         /// </summary>
@@ -1250,14 +1251,14 @@ namespace Desktop_Fences
 
         #region Tweakable Layout Configuration - Adjust these values for perfect positioning
 
-        
+
         /// <summary>
         /// TWEAK THESE VALUES: Text spacing inside the TextBox
         /// </summary>
         private static Thickness GetTextBoxPadding()
         {
             double leftPadding = 6;   // TWEAK: Text distance from TextBox left edge
-            double topPadding = 4;    // TWEAK: Text distance from TextBox top edge  
+            double topPadding = 4;    // TWEAK: Text distance from TextBox top edge
             double rightPadding = 6;  // TWEAK: Text distance from TextBox right edge
             double bottomPadding = 4; // TWEAK: Text distance from TextBox bottom edge
 
@@ -1283,7 +1284,7 @@ namespace Desktop_Fences
             Color borderColor = Color.FromArgb(
                 80,    // TWEAK: Alpha (0=invisible, 255=solid)
                 100,   // TWEAK: Red component
-                100,   // TWEAK: Green component  
+                100,   // TWEAK: Green component
                 100    // TWEAK: Blue component
             );
 
