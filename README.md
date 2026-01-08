@@ -88,15 +88,6 @@ Attention: Only user-writable locations are compatible. See (https://github.com/
 
 ---
 
-## Stargazers over time
-
-## [![Stargazers over time](https://starchart.cc/limbo666/DesktopFences.svg?background=%23535050&axis=%23f172cb&line=%239c34f7)](https://starchart.cc/limbo666/DesktopFences)
-
-## License
-
-This project is licensed under the [MIT License](License.md).
-
----
 
 ## Credits
 
